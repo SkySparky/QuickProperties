@@ -38,8 +38,7 @@ namespace qps { // ::qps
 /* Properties Object Management *///-------------------------------------------
 Properties::Properties( QObject* parent, QObject* target ) :
     QAbstractListModel( parent ),
-    _target( nullptr ),
-    _hiddenStaticPropertiesCount( 0 )
+    _target( nullptr )
 {
     setTarget( target );
     monitorStaticProperties( );
@@ -97,6 +96,40 @@ bool    Properties::duplicateTo( qps::Properties* destination )
     return true;
 }
 
+bool    Properties::operator==( const qps::Properties& right ) const
+{
+    if ( getTarget() == nullptr ||
+         right.getTarget() == nullptr )
+        return false;
+    if ( getTarget() == right.getTarget() )
+        return true;
+
+    if ( getHiddenStaticPropertiesCount() != right.getHiddenStaticPropertiesCount() )
+        return false;   // Fast exit
+
+    int pCount = getTarget()->metaObject( )->propertyCount( );
+    for ( int i = getHiddenStaticPropertiesCount(); i < pCount; ++i ) {
+        QMetaProperty metaProperty = getTarget()->metaObject( )->property( i );
+        QString propertyName( metaProperty.name( ) );
+        if ( !right.hasProperty( propertyName ) )
+            return false;
+        QVariant propertyValue = getTarget()->property( propertyName.toLatin1() );
+        QVariant rightPropertyValue = right.getProperty( propertyName );
+        if ( propertyValue != rightPropertyValue )
+            return false;
+    }
+    QList< QByteArray > dynamicProperties = getTarget()->dynamicPropertyNames( );
+    for ( int d = 0; d < dynamicProperties.size( ); d++ ) {
+        QString propertyName = dynamicProperties.at( d );
+        if ( !right.hasProperty( propertyName ) )
+            return false;
+        QVariant propertyValue = getTarget()->property( propertyName.toLatin1( ) );
+        if ( propertyValue != right.getProperty( propertyName ) )
+            return false;
+    }
+    return true;
+}
+
 void    Properties::setTarget( QObject* target )
 {
     if ( target != nullptr &&
@@ -114,6 +147,10 @@ void    Properties::setTarget( QObject* target )
          target != this     )   // Monitor target destruction
         connect( _target, &QObject::destroyed, this, &qps::Properties::targetDestroyed );
 
+    if ( target == this )
+        _hiddenStaticPropertiesCount = 3;
+    else
+        _hiddenStaticPropertiesCount = 0;
     // FIXME v2
     // Force model update
 }
@@ -128,7 +165,7 @@ void    Properties::targetDestroyed( QObject* target )
 
 
 /* Property Creation Management *///-------------------------------------------
-bool    Properties::hasProperty( QString propertyName )
+bool    Properties::hasProperty( QString propertyName ) const
 {
     if ( getTarget() == nullptr )
         return false;
@@ -155,18 +192,11 @@ bool    Properties::addDynamicProperty( QString name, QVariant value )
 
     beginResetModel( );
     getTarget()->setProperty( name.toLatin1( ), value );
-    int pi = getTarget()->metaObject( )->indexOfProperty( name.toLatin1( ) );
-    if ( pi != -1 )
-    {
-        endResetModel( );
-        return true;
-    }
-
     // Note: property changes will be catch in object event() method when
     //       a dynamic property change event is sent.
     endResetModel( );
 
-    return false;   // Creation fails
+    return true;
 }
 
 QVariant    Properties::getProperty( int propertyIndex )

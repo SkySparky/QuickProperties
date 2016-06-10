@@ -99,12 +99,23 @@ public:
      *  \note 20151029 limitation: static property defined wit Q_PROPERTY macro will be ducplicated as dynamic properties.
      *  \return false if copy fails.*/
     Q_INVOKABLE bool                duplicateTo( qps::Properties* destination );
+public:
+    /*! Test equality between two qps::Properties object (static and dynamic properties are considered equal when they have the same type).
+     *
+     * \note If this properties has no target or \c right has no target, false is immediatly returned.
+     * \note Comparing two properties with the same target return a fast true.
+     */
+    bool    operator==( const qps::Properties& right ) const;
 
 public:
     //! FIXME.
     Q_PROPERTY( QObject* target READ getTarget WRITE setTarget NOTIFY targetChanged )
     QObject*    getTarget( ) const { return _target; }
-    void        setTarget( QObject* target );
+    /*!
+     * \warning setHiddenStaticPropertyCount() is automatically set to true when target is this to avoid visualizing internal qps::Properties properties.
+     * \sa target
+     */
+    virtual void    setTarget( QObject* target );
 protected:
     //! \copydoc qps::Properties::target
     QObject*    _target = nullptr;
@@ -124,7 +135,7 @@ public:
     /*! Test if a property with the given name exist in this QObject static or dynamic properties.
      * \return true if a property exists, false otherwise.
      */
-    Q_INVOKABLE bool    hasProperty( QString propertyName );
+    Q_INVOKABLE bool    hasProperty( QString propertyName ) const;
     //! Add a QObject dynamic property, property changes will be monitored and reflected in this properties models (PropertyGraphModel and PropertiesModel).
     /*!
      * \param name  property desired name.
@@ -135,7 +146,7 @@ public:
     //! Shortcut for QObject::setProperty() method with a QString instead of a char* for property name.
     Q_INVOKABLE void    setProperty( QString propertyName, QVariant value ) { QObject::setProperty( propertyName.toLatin1( ), value ); }
     //! Return property with name 'propertyName' current value.
-    Q_INVOKABLE virtual QVariant    getProperty( QString propertyName ) { return property( propertyName.toLatin1( ) ); }
+    Q_INVOKABLE virtual QVariant    getProperty( QString propertyName ) const { return property( propertyName.toLatin1( ) ); }
     /*! \brief Return property number 'propertyIndex' current value.
      *
      * \note Be carefull, hidden static properties count is taken into account, if 2 static "property elements" are hidden, you should use 0 to
@@ -172,15 +183,16 @@ public:
 
 public:
     /*! Set the number of static properties that will be kept hidden in this model (for
-     * exemple set to 1 in order to hide Qt objectName property).
+     * exemple set to 1 in order to hide Qt only objectName property).
      *
-     * This value default to 1, in order to hide Qt 'objectName' property attached to every qobjects.
+     * This value default to 3 when target is this, in order to hide Qt 'objectName' property attached to every qobjects and internal qps::Properties Q_PROPERTY.
      *
      * \param count number of the first count static property that will be hidden by this model.
      */
-    void    hideStaticProperties( int count );
+    auto    hideStaticProperties( int count ) -> void;
+    auto    getHiddenStaticPropertiesCount() const -> int { return _hiddenStaticPropertiesCount; }
 protected:
-    int     _hiddenStaticPropertiesCount;
+    int     _hiddenStaticPropertiesCount = 0;
 
 public:
     //! Allow construction of child QpsLimit based object in QpsProperties directly in declarative QML code.

@@ -295,9 +295,28 @@ public:
             return;
         beginInsertRows( QModelIndex( ), _list.size( ), _list.size( ) );
         _list.append( item );
+        appendImpl( item, item_type<T>{} );
         endInsertRows( );
         emitItemCountChanged();
         //itemInserted( item );  // FIXME 20150219
+    }
+
+private:
+    inline auto appendImpl( T item, non_ptr_type )            -> void { }
+    inline auto appendImpl( T item, non_ptr_qobject_type )    -> void { }
+
+    inline auto appendImpl( T item, ptr_type )                -> void { }
+    inline auto appendImpl( T item, ptr_qobject_type )        -> void { }
+
+    inline auto appendImpl( T item, shared_ptr_type )         -> void { }
+    inline auto appendImpl( T item, shared_ptr_qobject_type ) -> void {
+        _qObjectItemMap.insert( item.get(), item );
+    }
+
+    inline auto appendImpl( T item, weak_ptr_type )           -> void { }
+    inline auto appendImpl( T item, weak_ptr_qobject_type )   -> void {
+        if ( item.lock() )
+            _qObjectItemMap.insert( item.lock().get(), item );
     }
 
 public:
@@ -311,6 +330,7 @@ public:
             return;
         beginInsertRows( QModelIndex( ), i, i );
         _list.insert( i, item );
+        appendImpl( item, item_type<T>{} ); // Warning: 20160504 appendImplt is generic enought to support indexed insertion
         endInsertRows( );
         emitItemCountChanged();
         itemInserted( item );
@@ -509,6 +529,8 @@ private:
     inline auto indexOfItemImpl( QObject* qItem, ptr_qobject_type )        const -> int { return indexOf( qobject_cast< T >( qItem ) ); }
     inline auto indexOfItemImpl( QObject* qItem, shared_ptr_type )         const -> int { return -1; }
     inline auto indexOfItemImpl( QObject* qItem, shared_ptr_qobject_type ) const -> int {
+        if ( qItem == nullptr )
+            return -1;
         if ( _qObjectItemMap.contains( qItem ) ) {
             T item = _qObjectItemMap.value( qItem );
             return indexOf( item );
@@ -517,6 +539,8 @@ private:
     }
     inline auto indexOfItemImpl( QObject* qItem, weak_ptr_type )           const -> int { return -1; }
     inline auto indexOfItemImpl( QObject* qItem, weak_ptr_qobject_type )   const -> int {
+        if ( qItem == nullptr )
+            return -1;
         if ( _qObjectItemMap.contains( qItem ) ) {
             T item = _qObjectItemMap.value( qItem );
             return indexOf( item );

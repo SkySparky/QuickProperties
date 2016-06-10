@@ -26,7 +26,10 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/map.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
+#include <google/protobuf/any.pb.h>
 // @@protoc_insertion_point(includes)
 
 namespace qps {
@@ -39,6 +42,10 @@ void protobuf_ShutdownFile_quickproperties_2eproto();
 
 class Properties;
 class Property;
+class TimeDoubleMap;
+class TimeStringMap;
+class TimeValueMap;
+class TimedProperties;
 
 // ===================================================================
 
@@ -229,10 +236,10 @@ class Properties : public ::google::protobuf::Message {
   ::google::protobuf::int32 dynamic_property_count() const;
   void set_dynamic_property_count(::google::protobuf::int32 value);
 
-  // repeated .qps.pb.Property properties = 5;
+  // repeated .qps.pb.Property properties = 10;
   int properties_size() const;
   void clear_properties();
-  static const int kPropertiesFieldNumber = 5;
+  static const int kPropertiesFieldNumber = 10;
   const ::qps::pb::Property& properties(int index) const;
   ::qps::pb::Property* mutable_properties(int index);
   ::qps::pb::Property* add_properties();
@@ -258,6 +265,398 @@ class Properties : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static Properties* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class TimeStringMap : public ::google::protobuf::Message {
+ public:
+  TimeStringMap();
+  virtual ~TimeStringMap();
+
+  TimeStringMap(const TimeStringMap& from);
+
+  inline TimeStringMap& operator=(const TimeStringMap& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TimeStringMap& default_instance();
+
+  void Swap(TimeStringMap* other);
+
+  // implements Message ----------------------------------------------
+
+  inline TimeStringMap* New() const { return New(NULL); }
+
+  TimeStringMap* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TimeStringMap& from);
+  void MergeFrom(const TimeStringMap& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(TimeStringMap* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  // map<int64, string> values = 1;
+  int values_size() const;
+  void clear_values();
+  static const int kValuesFieldNumber = 1;
+  const ::google::protobuf::Map< ::google::protobuf::int64, ::std::string >&
+      values() const;
+  ::google::protobuf::Map< ::google::protobuf::int64, ::std::string >*
+      mutable_values();
+
+  // @@protoc_insertion_point(class_scope:qps.pb.TimeStringMap)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  typedef ::google::protobuf::internal::MapEntryLite<
+      ::google::protobuf::int64, ::std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_INT64,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 >
+      TimeStringMap_ValuesEntry;
+  ::google::protobuf::internal::MapField<
+      ::google::protobuf::int64, ::std::string,
+      ::google::protobuf::internal::WireFormatLite::TYPE_INT64,
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > values_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_quickproperties_2eproto();
+  friend void protobuf_AssignDesc_quickproperties_2eproto();
+  friend void protobuf_ShutdownFile_quickproperties_2eproto();
+
+  void InitAsDefaultInstance();
+  static TimeStringMap* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class TimeDoubleMap : public ::google::protobuf::Message {
+ public:
+  TimeDoubleMap();
+  virtual ~TimeDoubleMap();
+
+  TimeDoubleMap(const TimeDoubleMap& from);
+
+  inline TimeDoubleMap& operator=(const TimeDoubleMap& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TimeDoubleMap& default_instance();
+
+  void Swap(TimeDoubleMap* other);
+
+  // implements Message ----------------------------------------------
+
+  inline TimeDoubleMap* New() const { return New(NULL); }
+
+  TimeDoubleMap* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TimeDoubleMap& from);
+  void MergeFrom(const TimeDoubleMap& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(TimeDoubleMap* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  // map<int64, double> values = 1;
+  int values_size() const;
+  void clear_values();
+  static const int kValuesFieldNumber = 1;
+  const ::google::protobuf::Map< ::google::protobuf::int64, double >&
+      values() const;
+  ::google::protobuf::Map< ::google::protobuf::int64, double >*
+      mutable_values();
+
+  // @@protoc_insertion_point(class_scope:qps.pb.TimeDoubleMap)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  typedef ::google::protobuf::internal::MapEntryLite<
+      ::google::protobuf::int64, double,
+      ::google::protobuf::internal::WireFormatLite::TYPE_INT64,
+      ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE,
+      0 >
+      TimeDoubleMap_ValuesEntry;
+  ::google::protobuf::internal::MapField<
+      ::google::protobuf::int64, double,
+      ::google::protobuf::internal::WireFormatLite::TYPE_INT64,
+      ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE,
+      0 > values_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_quickproperties_2eproto();
+  friend void protobuf_AssignDesc_quickproperties_2eproto();
+  friend void protobuf_ShutdownFile_quickproperties_2eproto();
+
+  void InitAsDefaultInstance();
+  static TimeDoubleMap* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class TimeValueMap : public ::google::protobuf::Message {
+ public:
+  TimeValueMap();
+  virtual ~TimeValueMap();
+
+  TimeValueMap(const TimeValueMap& from);
+
+  inline TimeValueMap& operator=(const TimeValueMap& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TimeValueMap& default_instance();
+
+  void Swap(TimeValueMap* other);
+
+  // implements Message ----------------------------------------------
+
+  inline TimeValueMap* New() const { return New(NULL); }
+
+  TimeValueMap* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TimeValueMap& from);
+  void MergeFrom(const TimeValueMap& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(TimeValueMap* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional string property_name = 1;
+  void clear_property_name();
+  static const int kPropertyNameFieldNumber = 1;
+  const ::std::string& property_name() const;
+  void set_property_name(const ::std::string& value);
+  void set_property_name(const char* value);
+  void set_property_name(const char* value, size_t size);
+  ::std::string* mutable_property_name();
+  ::std::string* release_property_name();
+  void set_allocated_property_name(::std::string* property_name);
+
+  // optional int32 property_type = 2;
+  void clear_property_type();
+  static const int kPropertyTypeFieldNumber = 2;
+  ::google::protobuf::int32 property_type() const;
+  void set_property_type(::google::protobuf::int32 value);
+
+  // optional .google.protobuf.Any map = 42;
+  bool has_map() const;
+  void clear_map();
+  static const int kMapFieldNumber = 42;
+  const ::google::protobuf::Any& map() const;
+  ::google::protobuf::Any* mutable_map();
+  ::google::protobuf::Any* release_map();
+  void set_allocated_map(::google::protobuf::Any* map);
+
+  // @@protoc_insertion_point(class_scope:qps.pb.TimeValueMap)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr property_name_;
+  ::google::protobuf::Any* map_;
+  ::google::protobuf::int32 property_type_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_quickproperties_2eproto();
+  friend void protobuf_AssignDesc_quickproperties_2eproto();
+  friend void protobuf_ShutdownFile_quickproperties_2eproto();
+
+  void InitAsDefaultInstance();
+  static TimeValueMap* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class TimedProperties : public ::google::protobuf::Message {
+ public:
+  TimedProperties();
+  virtual ~TimedProperties();
+
+  TimedProperties(const TimedProperties& from);
+
+  inline TimedProperties& operator=(const TimedProperties& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const TimedProperties& default_instance();
+
+  void Swap(TimedProperties* other);
+
+  // implements Message ----------------------------------------------
+
+  inline TimedProperties* New() const { return New(NULL); }
+
+  TimedProperties* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const TimedProperties& from);
+  void MergeFrom(const TimedProperties& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(TimedProperties* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional .qps.pb.Properties base = 1;
+  bool has_base() const;
+  void clear_base();
+  static const int kBaseFieldNumber = 1;
+  const ::qps::pb::Properties& base() const;
+  ::qps::pb::Properties* mutable_base();
+  ::qps::pb::Properties* release_base();
+  void set_allocated_base(::qps::pb::Properties* base);
+
+  // optional int64 first = 2;
+  void clear_first();
+  static const int kFirstFieldNumber = 2;
+  ::google::protobuf::int64 first() const;
+  void set_first(::google::protobuf::int64 value);
+
+  // optional int64 last = 3;
+  void clear_last();
+  static const int kLastFieldNumber = 3;
+  ::google::protobuf::int64 last() const;
+  void set_last(::google::protobuf::int64 value);
+
+  // repeated .qps.pb.TimeValueMap tvms = 10;
+  int tvms_size() const;
+  void clear_tvms();
+  static const int kTvmsFieldNumber = 10;
+  const ::qps::pb::TimeValueMap& tvms(int index) const;
+  ::qps::pb::TimeValueMap* mutable_tvms(int index);
+  ::qps::pb::TimeValueMap* add_tvms();
+  ::google::protobuf::RepeatedPtrField< ::qps::pb::TimeValueMap >*
+      mutable_tvms();
+  const ::google::protobuf::RepeatedPtrField< ::qps::pb::TimeValueMap >&
+      tvms() const;
+
+  // @@protoc_insertion_point(class_scope:qps.pb.TimedProperties)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::qps::pb::Properties* base_;
+  ::google::protobuf::int64 first_;
+  ::google::protobuf::int64 last_;
+  ::google::protobuf::RepeatedPtrField< ::qps::pb::TimeValueMap > tvms_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_quickproperties_2eproto();
+  friend void protobuf_AssignDesc_quickproperties_2eproto();
+  friend void protobuf_ShutdownFile_quickproperties_2eproto();
+
+  void InitAsDefaultInstance();
+  static TimedProperties* default_instance_;
 };
 // ===================================================================
 
@@ -456,7 +855,7 @@ inline void Properties::set_dynamic_property_count(::google::protobuf::int32 val
   // @@protoc_insertion_point(field_set:qps.pb.Properties.dynamic_property_count)
 }
 
-// repeated .qps.pb.Property properties = 5;
+// repeated .qps.pb.Property properties = 10;
 inline int Properties::properties_size() const {
   return properties_.size();
 }
@@ -486,7 +885,256 @@ Properties::properties() const {
   return properties_;
 }
 
+// -------------------------------------------------------------------
+
+// TimeStringMap
+
+// map<int64, string> values = 1;
+inline int TimeStringMap::values_size() const {
+  return values_.size();
+}
+inline void TimeStringMap::clear_values() {
+  values_.Clear();
+}
+inline const ::google::protobuf::Map< ::google::protobuf::int64, ::std::string >&
+TimeStringMap::values() const {
+  // @@protoc_insertion_point(field_map:qps.pb.TimeStringMap.values)
+  return values_.GetMap();
+}
+inline ::google::protobuf::Map< ::google::protobuf::int64, ::std::string >*
+TimeStringMap::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_map:qps.pb.TimeStringMap.values)
+  return values_.MutableMap();
+}
+
+// -------------------------------------------------------------------
+
+// TimeDoubleMap
+
+// map<int64, double> values = 1;
+inline int TimeDoubleMap::values_size() const {
+  return values_.size();
+}
+inline void TimeDoubleMap::clear_values() {
+  values_.Clear();
+}
+inline const ::google::protobuf::Map< ::google::protobuf::int64, double >&
+TimeDoubleMap::values() const {
+  // @@protoc_insertion_point(field_map:qps.pb.TimeDoubleMap.values)
+  return values_.GetMap();
+}
+inline ::google::protobuf::Map< ::google::protobuf::int64, double >*
+TimeDoubleMap::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_map:qps.pb.TimeDoubleMap.values)
+  return values_.MutableMap();
+}
+
+// -------------------------------------------------------------------
+
+// TimeValueMap
+
+// optional string property_name = 1;
+inline void TimeValueMap::clear_property_name() {
+  property_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& TimeValueMap::property_name() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimeValueMap.property_name)
+  return property_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void TimeValueMap::set_property_name(const ::std::string& value) {
+  
+  property_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:qps.pb.TimeValueMap.property_name)
+}
+inline void TimeValueMap::set_property_name(const char* value) {
+  
+  property_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:qps.pb.TimeValueMap.property_name)
+}
+inline void TimeValueMap::set_property_name(const char* value, size_t size) {
+  
+  property_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:qps.pb.TimeValueMap.property_name)
+}
+inline ::std::string* TimeValueMap::mutable_property_name() {
+  
+  // @@protoc_insertion_point(field_mutable:qps.pb.TimeValueMap.property_name)
+  return property_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* TimeValueMap::release_property_name() {
+  
+  return property_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void TimeValueMap::set_allocated_property_name(::std::string* property_name) {
+  if (property_name != NULL) {
+    
+  } else {
+    
+  }
+  property_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), property_name);
+  // @@protoc_insertion_point(field_set_allocated:qps.pb.TimeValueMap.property_name)
+}
+
+// optional int32 property_type = 2;
+inline void TimeValueMap::clear_property_type() {
+  property_type_ = 0;
+}
+inline ::google::protobuf::int32 TimeValueMap::property_type() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimeValueMap.property_type)
+  return property_type_;
+}
+inline void TimeValueMap::set_property_type(::google::protobuf::int32 value) {
+  
+  property_type_ = value;
+  // @@protoc_insertion_point(field_set:qps.pb.TimeValueMap.property_type)
+}
+
+// optional .google.protobuf.Any map = 42;
+inline bool TimeValueMap::has_map() const {
+  return !_is_default_instance_ && map_ != NULL;
+}
+inline void TimeValueMap::clear_map() {
+  if (GetArenaNoVirtual() == NULL && map_ != NULL) delete map_;
+  map_ = NULL;
+}
+inline const ::google::protobuf::Any& TimeValueMap::map() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimeValueMap.map)
+  return map_ != NULL ? *map_ : *default_instance_->map_;
+}
+inline ::google::protobuf::Any* TimeValueMap::mutable_map() {
+  
+  if (map_ == NULL) {
+    map_ = new ::google::protobuf::Any;
+  }
+  // @@protoc_insertion_point(field_mutable:qps.pb.TimeValueMap.map)
+  return map_;
+}
+inline ::google::protobuf::Any* TimeValueMap::release_map() {
+  
+  ::google::protobuf::Any* temp = map_;
+  map_ = NULL;
+  return temp;
+}
+inline void TimeValueMap::set_allocated_map(::google::protobuf::Any* map) {
+  delete map_;
+  map_ = map;
+  if (map) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:qps.pb.TimeValueMap.map)
+}
+
+// -------------------------------------------------------------------
+
+// TimedProperties
+
+// optional .qps.pb.Properties base = 1;
+inline bool TimedProperties::has_base() const {
+  return !_is_default_instance_ && base_ != NULL;
+}
+inline void TimedProperties::clear_base() {
+  if (GetArenaNoVirtual() == NULL && base_ != NULL) delete base_;
+  base_ = NULL;
+}
+inline const ::qps::pb::Properties& TimedProperties::base() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimedProperties.base)
+  return base_ != NULL ? *base_ : *default_instance_->base_;
+}
+inline ::qps::pb::Properties* TimedProperties::mutable_base() {
+  
+  if (base_ == NULL) {
+    base_ = new ::qps::pb::Properties;
+  }
+  // @@protoc_insertion_point(field_mutable:qps.pb.TimedProperties.base)
+  return base_;
+}
+inline ::qps::pb::Properties* TimedProperties::release_base() {
+  
+  ::qps::pb::Properties* temp = base_;
+  base_ = NULL;
+  return temp;
+}
+inline void TimedProperties::set_allocated_base(::qps::pb::Properties* base) {
+  delete base_;
+  base_ = base;
+  if (base) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:qps.pb.TimedProperties.base)
+}
+
+// optional int64 first = 2;
+inline void TimedProperties::clear_first() {
+  first_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 TimedProperties::first() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimedProperties.first)
+  return first_;
+}
+inline void TimedProperties::set_first(::google::protobuf::int64 value) {
+  
+  first_ = value;
+  // @@protoc_insertion_point(field_set:qps.pb.TimedProperties.first)
+}
+
+// optional int64 last = 3;
+inline void TimedProperties::clear_last() {
+  last_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 TimedProperties::last() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimedProperties.last)
+  return last_;
+}
+inline void TimedProperties::set_last(::google::protobuf::int64 value) {
+  
+  last_ = value;
+  // @@protoc_insertion_point(field_set:qps.pb.TimedProperties.last)
+}
+
+// repeated .qps.pb.TimeValueMap tvms = 10;
+inline int TimedProperties::tvms_size() const {
+  return tvms_.size();
+}
+inline void TimedProperties::clear_tvms() {
+  tvms_.Clear();
+}
+inline const ::qps::pb::TimeValueMap& TimedProperties::tvms(int index) const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimedProperties.tvms)
+  return tvms_.Get(index);
+}
+inline ::qps::pb::TimeValueMap* TimedProperties::mutable_tvms(int index) {
+  // @@protoc_insertion_point(field_mutable:qps.pb.TimedProperties.tvms)
+  return tvms_.Mutable(index);
+}
+inline ::qps::pb::TimeValueMap* TimedProperties::add_tvms() {
+  // @@protoc_insertion_point(field_add:qps.pb.TimedProperties.tvms)
+  return tvms_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::qps::pb::TimeValueMap >*
+TimedProperties::mutable_tvms() {
+  // @@protoc_insertion_point(field_mutable_list:qps.pb.TimedProperties.tvms)
+  return &tvms_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::qps::pb::TimeValueMap >&
+TimedProperties::tvms() const {
+  // @@protoc_insertion_point(field_list:qps.pb.TimedProperties.tvms)
+  return tvms_;
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

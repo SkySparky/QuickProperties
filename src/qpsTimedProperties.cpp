@@ -36,16 +36,15 @@
 
 namespace qps { // ::qps
 
-
 /* TimedProperties Object Management *///--------------------------------------
 TimedProperties::TimedProperties( QObject* parent ) :
-    Properties( parent ),
+    Properties( parent, this ),
     _current( QDateTime( ) ),
     _first( QDateTime( ) ),
     _last( QDateTime( ) ),
     _timeValue( 1.0 )   // Default to last date (ie 100% of the object properties time interval)
 {
-
+    setTarget( this );
 }
 
 TimedProperties::~TimedProperties( )
@@ -58,6 +57,39 @@ TimedProperties::~TimedProperties( )
     while ( !_dataSources.isEmpty( ) )
         delete _dataSources.takeFirst( );
 }
+
+bool    TimedProperties::operator==( const qps::TimedProperties& right ) const
+{
+    bool base = qps::Properties::operator==( static_cast<const qps::Properties&>( right ) );
+    if ( base == false )
+        return false;
+
+    if ( _propertiesTimeValueMap.size() != right._propertiesTimeValueMap.size() )
+        return false;   // Fast exit
+
+    // Compare TVMs
+    QMap< QString, TimeValueMap* >::const_iterator propertyTvmIter = _propertiesTimeValueMap.constBegin();
+    while ( propertyTvmIter != _propertiesTimeValueMap.constEnd() ) {
+        const qps::TimeValueMap* rightTvm = right.getConstTimeValueMap( propertyTvmIter.key() );
+        if ( rightTvm == nullptr )
+            return false;
+        if ( propertyTvmIter.value() == nullptr )       // Should not happen
+            continue;
+        if ( *propertyTvmIter.value() != *rightTvm )    // Use QMap code to compare QMaps...
+            return false;
+        ++propertyTvmIter;
+    }
+
+    return true;
+}
+
+void    TimedProperties::setTarget( QObject* target )
+{
+    qps::Properties::setTarget( target );
+    if ( target == this )
+        _hiddenStaticPropertiesCount = 7;
+}
+
 //-----------------------------------------------------------------------------
 
 
@@ -93,7 +125,6 @@ QDateTime   TimedProperties::getCurrent( ) const
 
 void        TimedProperties::updateFirstLast( )
 {
-    qDebug( ) << "TimedProperties::updateFirstLast( )";
     QDateTime first;
     QDateTime last;
     foreach ( TimeValueMap* tvm, _propertiesTimeValueMap ) {
@@ -132,23 +163,24 @@ void        TimedProperties::setProperty( QString propertyName, const QDateTime&
         }
         else timeValueMap = _propertiesTimeValueMap.value( propertyName, nullptr );
 
-        Q_ASSERT( timeValueMap != nullptr );
-        timeValueMap->qpsInsert( propertyDateTime, propertyValue );
+        if ( timeValueMap != nullptr ) {
+            timeValueMap->qpsInsert( propertyDateTime, propertyValue );
 
-        // First and last initialization
-        if ( !_last.isValid( ) ) {
-            _last = propertyDateTime;
-            qps::Properties::setProperty( propertyName, propertyValue );    // If value is the last one, update current value
-        }
-        if ( !_first.isValid( ) )
-            _first = propertyDateTime;
+            // First and last initialization
+            if ( !_last.isValid( ) ) {
+                _last = propertyDateTime;
+                qps::Properties::setProperty( propertyName, propertyValue );    // If value is the last one, update current value
+            }
+            if ( !_first.isValid( ) )
+                _first = propertyDateTime;
 
-        if ( propertyDateTime > _last ) { // Update object date time interval
-            _last = propertyDateTime;
-            qps::Properties::setProperty( propertyName, propertyValue );    // If value is the last one, update current value
+            if ( propertyDateTime > _last ) { // Update object date time interval
+                _last = propertyDateTime;
+                qps::Properties::setProperty( propertyName, propertyValue );    // If value is the last one, update current value
+            }
+            else if ( propertyDateTime < _first )
+                _first = propertyDateTime;
         }
-        else if ( propertyDateTime < _first )
-            _first = propertyDateTime;
     }
 }
 
@@ -187,7 +219,7 @@ QVariant    TimedProperties::getProperty( QString propertyName, const QDateTime&
     return QVariant( );
 }
 
-QVariant    TimedProperties::getProperty( QString propertyName )
+QVariant    TimedProperties::getProperty( QString propertyName ) const
 {
     // FIXME: 20150616 hack
     return property( propertyName.toLatin1( ) );
@@ -209,17 +241,32 @@ void        TimedProperties::dumpProperty( QDebug dbg, QString propertyName ) co
 
 TimeValueMap*   TimedProperties::getTimeValueMap( QString propertyName )
 {
+    return getTimeValueMap( propertyName, false );
+}
+
+qps::TimeValueMap*  TimedProperties::getTimeValueMap( QString propertyName, bool forceCreation )
+{
     if ( propertyName.isNull( ) || propertyName.isEmpty( ) )
         return nullptr;
     // Look for an existing time value map for the requested property, or create it if the property exists without time data
     TimeValueMap* timeValueMap = _propertiesTimeValueMap.value( propertyName, nullptr );
-    if ( timeValueMap == nullptr && hasProperty( propertyName ) ) {
+    bool propertyExists = forceCreation || hasProperty( propertyName );
+    if ( timeValueMap == nullptr &&
+          propertyExists ) {
         timeValueMap = new TimeValueMap( nullptr );
         connect( timeValueMap, &qps::TimeValueMap::updated, this, &qps::TimedProperties::updateFirstLast );
         _propertiesTimeValueMap.insert( propertyName, timeValueMap );
     }
     if ( timeValueMap != nullptr )
         QQmlEngine::setObjectOwnership( timeValueMap, QQmlEngine::CppOwnership );
+    return timeValueMap;
+}
+
+auto    TimedProperties::getConstTimeValueMap( QString propertyName ) const -> const TimeValueMap*
+{
+    if ( propertyName.isNull( ) || propertyName.isEmpty( ) )
+        return nullptr;
+    TimeValueMap* timeValueMap = _propertiesTimeValueMap.value( propertyName, nullptr );
     return timeValueMap;
 }
 //-----------------------------------------------------------------------------

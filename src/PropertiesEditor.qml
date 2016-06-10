@@ -30,6 +30,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
+
 import "qrc:/QuickProperties2" as Qps
 
 /*! \brief Graphical editor for Qps.Properties or qps::TimedProperties objects (allow edition of individual property elements inside properties).

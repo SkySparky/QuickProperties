@@ -22,6 +22,6 @@ QuickProperties screenshot:
 
 ![alt tag](http://www.qanava.org/wp-content/uploads/2015/10/20151029_quiproperties-sample-propslist.png)
 
-QuickProperties is distributed under the GNU General Public Licences.
+QuickProperties is distributed under the GNU Lesser General Public Licence v3 LGPLv3.
 
 QuickProperties is still _early alpha_, contact benoit@qanava.org if you need specific features or non GPL licencing.

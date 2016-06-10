@@ -98,10 +98,14 @@ void    CSVWorker::setSource( qps::TimedProperties* properties, QIODevice* csvIo
     _csvIoDevice = csvIoDevice;
     _properties = properties;
 
-    Q_ASSERT( _properties != nullptr );
+    if ( _properties == nullptr ) {
+        qDebug( ) << "qps::CSVWorker::setSource(): nullptr properties.";
+        return;
+    }
+
     if ( _csvIoDevice == nullptr ||
          !_csvIoDevice->isReadable( ) ) {
-        qDebug( ) << "qps::CSVWorker::operate(): CSV input stream is not nullptr or not readable.";
+        qDebug( ) << "qps::CSVWorker::setSource(): CSV input stream is not nullptr or not readable.";
         return;
     }
     QTextStream csvStream( _csvIoDevice );
@@ -110,29 +114,33 @@ void    CSVWorker::setSource( qps::TimedProperties* properties, QIODevice* csvIo
         csvStream.seek( 0 );    // If IODevice is a QBuffer, current position might already been at end
 
     QString header = csvStream.readLine( );
-    qDebug( ) << "header=" << header;
+    //qDebug( ) << "header=" << header;
     if ( header.isNull( ) || header.isEmpty( ) ) {
-        qDebug( ) << "qps::CSVWorker::operate(): Can't read CSV file header.";
+        qDebug( ) << "qps::CSVWorker::setSource(): Can't read CSV file header.";
         return;
     }
     QStringList columns = header.split( "," );
     if ( columns.size( ) < 2 ) {
-        qDebug( ) << "qps::CSVWorker::operate(): CSV file must have at least two columns.";
+        qDebug( ) << "qps::CSVWorker::setSource(): CSV file must have at least two columns.";
         return;
     }
-    Q_ASSERT( _tvms.size( ) == 0 );
+    if ( _tvms.size( ) != 0 ) {
+        qDebug( ) << "qps::CSVWorker::setSource(): Error: Fetching to a non empty TVM.";
+        return;
+    }
     for ( int c = 1; c < columns.size( ); c++ ) {
         QString column = columns.at( c );
         if ( column.isNull() || column.isEmpty( ) ) {
-            qDebug( ) << "qps::CSVWorker::operate(): Can't read CSV file column " << c;
+            qDebug( ) << "qps::CSVWorker::setSource(): Can't read CSV file column " << c;
             return;
         }
         qps::TimeValueMap* columnTvm = _properties->getTimeValueMap( column );
-        if ( columnTvm == nullptr ) {   // Create a dynamic property for the column
+        if ( columnTvm == nullptr ||
+             !_properties->hasProperty( column ) ) {   // Create a dynamic property for the column
             _properties->addDynamicProperty( column, QVariant( 1.0 ) );
             columnTvm = _properties->getTimeValueMap( column );
         }
-        qDebug( ) << "Column " << column << "  TVM=" << columnTvm;
+        //qDebug( ) << "Column " << column << "  TVM=" << columnTvm;
         if ( columnTvm != nullptr )
             _tvms.insert( c - 1, columnTvm );
     }
@@ -141,7 +149,11 @@ void    CSVWorker::setSource( qps::TimedProperties* properties, QIODevice* csvIo
     if ( columnPropertyMap != nullptr ) {
         QMap< int, QString >::const_iterator columnPropertyIter = columnPropertyMap->begin( );
         while ( columnPropertyIter != columnPropertyMap->end( ) ) {
-            qps::TimeValueMap* columnTvm = _properties->getTimeValueMap( columnPropertyIter.value() );
+            QString columnProperty = columnPropertyIter.value();
+            if ( !_properties->hasProperty( columnProperty ) )   // Note 20160424: Force creation of a dynamic property for the tvm (even if it already exists, otherwise it will not be serialized later)
+                _properties->addDynamicProperty( columnProperty, QVariant( 1.0 ) );
+
+            qps::TimeValueMap* columnTvm = _properties->getTimeValueMap( columnProperty );
             if ( columnTvm == nullptr ) {   // Create a dynamic property for the column
                 _properties->addDynamicProperty( columnPropertyIter.value(), QVariant( 1.0 ) );
                 columnTvm = _properties->getTimeValueMap( columnPropertyIter.value() );
@@ -171,7 +183,6 @@ CSVDataSource::CSVDataSource( TimedProperties* properties, QString property, QOb
 
 CSVDataSource::~CSVDataSource( )
 {
-    qDebug() << "CSVDataSource::~CSVDataSource( )";
     if ( _worker != nullptr ) {
         _worker->deleteLater();
         _worker = nullptr;
@@ -232,7 +243,6 @@ bool    CSVDataSource::fetch( )
 
 void    CSVDataSource::workerFinished( )
 {
-    qDebug( ) << "CSVDataSource::workerFinished()";
     if ( _csvIoDevice->isOpen() )
         _csvIoDevice->close();
     if ( _worker != nullptr ) {
@@ -281,7 +291,7 @@ YFDataSource::~YFDataSource( )
         _reply = nullptr;
     }
 }
-//-------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 /* YF Data Source HTTP Interface *///------------------------------------------
 bool    YFDataSource::fetch( )
@@ -385,8 +395,8 @@ void    YFDataSource::httpReadyRead( )
     if ( _httpData.isOpen( ) && _reply != nullptr )
     {
         int w = _httpData.write( _reply->readAll( ) );
-        qDebug( ) << "qps::YFProperties::httpReadyRead(): " << w << " bytes fetched...";
-        qDebug( ) << "_httpData.size=" << _httpData.size( );
+        //qDebug( ) << "qps::YFProperties::httpReadyRead(): " << w << " bytes fetched...";
+        //qDebug( ) << "_httpData.size=" << _httpData.size( );
         if ( w == -1 )
             qDebug( ) << "qps::YFProperties::httpReadyRead( ): httpData write error.";
     }

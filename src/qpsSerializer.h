@@ -31,6 +31,7 @@
 // QuickProperties headers
 #include "./qpsTimeValueMap.h"
 #include "./qpsProperties.h"
+#include "./qpsTimedProperties.h"
 #include "./quickproperties.pb.h"
 
 namespace qps { // ::qps
@@ -82,6 +83,16 @@ public:
     //@{
     static auto serializeOut( const qps::Properties& properties, qps::pb::Properties& pbProperties ) -> void;
     static auto serializeIn( const qps::pb::Properties& pbProperties, qps::Properties& properties ) -> void;
+protected:
+    static  auto    variantToString( QVariant v ) -> QString;
+    static  auto    variantFromString( int type, QString s ) -> QVariant;
+
+public:
+    static auto serializeOutTimed( const qps::TimedProperties& properties, qps::pb::TimedProperties& pbProperties ) -> void;
+    static auto serializeInTimed( const qps::pb::TimedProperties& pbProperties, qps::TimedProperties& properties ) -> void;
+protected:
+    static auto serializeOutTvm( const qps::TimeValueMap& tvm, QString propertyName, qps::pb::TimeValueMap& pbTvm ) -> void;
+    static auto serializeInTvm( const qps::pb::TimeValueMap& pbTvm, qps::TimeValueMap& tvm ) -> void;
     //@}
     //-------------------------------------------------------------------------
 };

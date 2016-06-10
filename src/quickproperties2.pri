@@ -1,5 +1,5 @@
 
-CONFIG      += warn_on qt thread c++14
+CONFIG      += warn_on qt thread c++11
 QT          += core widgets gui qml quick
 
 INCLUDEPATH += $$PWD
@@ -26,7 +26,8 @@ SOURCES +=  $$PWD/qpsSerializer.cpp             \
             $$PWD/qpsPropertiesList.cpp         \
             $$PWD/quickproperties.pb.cc
 
-OTHER_FILES += ./QuickProperties2
+OTHER_FILES +=  $$PWD/QuickProperties2   \
+                $$PWD/quickproperties.proto
 
 DISTFILES   +=  $$PWD/PropertiesEditor.qml         \
                 $$PWD/PropertiesListView.qml       \

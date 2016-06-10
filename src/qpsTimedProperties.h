@@ -43,7 +43,9 @@ namespace qps { // ::qps
  *
  * See the QuickProperties documentation for more information: \ref qpintro
  *
- * Note 20151021: This class is highly alpha...
+ * \note As of 20160424 qps::TimedProperties target can only be itself (ie setTarget(this) is called in ctor).
+ * \note 20151021: This class is highly alpha...
+ * \note Well as of 20160424 this class is still highly alpha!
  *
  *	\nosubgrouping
  */
@@ -57,6 +59,11 @@ public:
     virtual ~TimedProperties( );
 private:
     Q_DISABLE_COPY( TimedProperties )
+public:
+    bool    operator==( const qps::TimedProperties& right ) const;
+
+    //! Similar to qps::Properties::setcurrent(), but if target is this timed properties, hidden static properties count is set to a correct value to hide qps::TimedProperties static properties.
+    virtual void    setTarget( QObject* target ) override;
     //@}
     //-------------------------------------------------------------------------
 
@@ -113,17 +120,27 @@ public:
     //! Get a property value for a specific time stamp (it will be clipped to first and last properties values).
     Q_INVOKABLE QVariant            getProperty( QString propertyName, const QDateTime& propertyDateTime ) const;
     //! Get a property current value (ie \c last property value if \c current has not been set).
-    Q_INVOKABLE virtual QVariant    getProperty( QString propertyName ) override;
+    Q_INVOKABLE virtual QVariant    getProperty( QString propertyName ) const override;
 
     //! Generate a debug dump of all (datetime=value) records for a specific property.
     void                    dumpProperty( QDebug dbg, QString propertyName ) const;
 
-    /*! \brief Return a time value map for a property with the given \c propertyName, maps are cached, the same unique map is always returned for the same property.
+    /*! \brief Return and eventually create a time value map for a property with the given \c propertyName, maps are cached, the same unique map is always returned for the same property.
      *
+     * \note equivalent to getTimeValueMap( QString, false );
      * \return a valid map of value over time for property \c propertyName, or nullptr if an error occurs.
      * \note Returned object ownership is forced to QmlEngine::CppOwnership.
      */
-    Q_INVOKABLE qps::TimeValueMap*       getTimeValueMap( QString propertyName );
+    Q_INVOKABLE qps::TimeValueMap*  getTimeValueMap( QString propertyName );
+
+    /*! \brief Return time value map for a requested property, and force property and time value map creation if \c forceCreation is set to true.
+     *
+     * \sa getTimeValueMap()
+     */
+    qps::TimeValueMap*              getTimeValueMap( QString propertyName, bool forceCreation );
+
+    //! Return a time value map for a given property, but do not create it if it does not exists.
+    auto                            getConstTimeValueMap( QString propertyName ) const -> const qps::TimeValueMap*;
 
 protected:
     QMap< QString, TimeValueMap* >   _propertiesTimeValueMap;

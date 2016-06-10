@@ -28,6 +28,20 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Properties_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Properties_reflection_ = NULL;
+const ::google::protobuf::Descriptor* TimeStringMap_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  TimeStringMap_reflection_ = NULL;
+const ::google::protobuf::Descriptor* TimeStringMap_ValuesEntry_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* TimeDoubleMap_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  TimeDoubleMap_reflection_ = NULL;
+const ::google::protobuf::Descriptor* TimeDoubleMap_ValuesEntry_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* TimeValueMap_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  TimeValueMap_reflection_ = NULL;
+const ::google::protobuf::Descriptor* TimedProperties_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  TimedProperties_reflection_ = NULL;
 
 }  // namespace
 
@@ -74,6 +88,73 @@ void protobuf_AssignDesc_quickproperties_2eproto() {
       sizeof(Properties),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Properties, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Properties, _is_default_instance_));
+  TimeStringMap_descriptor_ = file->message_type(2);
+  static const int TimeStringMap_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeStringMap, values_),
+  };
+  TimeStringMap_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      TimeStringMap_descriptor_,
+      TimeStringMap::default_instance_,
+      TimeStringMap_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(TimeStringMap),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeStringMap, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeStringMap, _is_default_instance_));
+  TimeStringMap_ValuesEntry_descriptor_ = TimeStringMap_descriptor_->nested_type(0);
+  TimeDoubleMap_descriptor_ = file->message_type(3);
+  static const int TimeDoubleMap_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeDoubleMap, values_),
+  };
+  TimeDoubleMap_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      TimeDoubleMap_descriptor_,
+      TimeDoubleMap::default_instance_,
+      TimeDoubleMap_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(TimeDoubleMap),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeDoubleMap, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeDoubleMap, _is_default_instance_));
+  TimeDoubleMap_ValuesEntry_descriptor_ = TimeDoubleMap_descriptor_->nested_type(0);
+  TimeValueMap_descriptor_ = file->message_type(4);
+  static const int TimeValueMap_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeValueMap, property_name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeValueMap, property_type_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeValueMap, map_),
+  };
+  TimeValueMap_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      TimeValueMap_descriptor_,
+      TimeValueMap::default_instance_,
+      TimeValueMap_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(TimeValueMap),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeValueMap, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimeValueMap, _is_default_instance_));
+  TimedProperties_descriptor_ = file->message_type(5);
+  static const int TimedProperties_offsets_[4] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimedProperties, base_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimedProperties, first_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimedProperties, last_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimedProperties, tvms_),
+  };
+  TimedProperties_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      TimedProperties_descriptor_,
+      TimedProperties::default_instance_,
+      TimedProperties_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(TimedProperties),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimedProperties, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TimedProperties, _is_default_instance_));
 }
 
 namespace {
@@ -90,6 +171,32 @@ void protobuf_RegisterTypes(const ::std::string&) {
       Property_descriptor_, &Property::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       Properties_descriptor_, &Properties::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      TimeStringMap_descriptor_, &TimeStringMap::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+        TimeStringMap_ValuesEntry_descriptor_,
+        ::google::protobuf::internal::MapEntry<
+            ::google::protobuf::int64,
+            ::std::string,
+            ::google::protobuf::internal::WireFormatLite::TYPE_INT64,
+            ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+            0>::CreateDefaultInstance(
+                TimeStringMap_ValuesEntry_descriptor_));
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      TimeDoubleMap_descriptor_, &TimeDoubleMap::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+        TimeDoubleMap_ValuesEntry_descriptor_,
+        ::google::protobuf::internal::MapEntry<
+            ::google::protobuf::int64,
+            double,
+            ::google::protobuf::internal::WireFormatLite::TYPE_INT64,
+            ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE,
+            0>::CreateDefaultInstance(
+                TimeDoubleMap_ValuesEntry_descriptor_));
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      TimeValueMap_descriptor_, &TimeValueMap::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      TimedProperties_descriptor_, &TimedProperties::default_instance());
 }
 
 }  // namespace
@@ -99,6 +206,14 @@ void protobuf_ShutdownFile_quickproperties_2eproto() {
   delete Property_reflection_;
   delete Properties::default_instance_;
   delete Properties_reflection_;
+  delete TimeStringMap::default_instance_;
+  delete TimeStringMap_reflection_;
+  delete TimeDoubleMap::default_instance_;
+  delete TimeDoubleMap_reflection_;
+  delete TimeValueMap::default_instance_;
+  delete TimeValueMap_reflection_;
+  delete TimedProperties::default_instance_;
+  delete TimedProperties_reflection_;
 }
 
 void protobuf_AddDesc_quickproperties_2eproto() {
@@ -107,20 +222,41 @@ void protobuf_AddDesc_quickproperties_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::google::protobuf::protobuf_AddDesc_google_2fprotobuf_2fany_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\025quickproperties.proto\022\006qps.pb\"5\n\010Prope"
-    "rty\022\014\n\004name\030\001 \001(\t\022\014\n\004type\030\002 \001(\005\022\r\n\005value"
-    "\030\003 \001(\t\"\256\001\n\nProperties\022\023\n\013object_name\030\001 \001"
-    "(\t\022&\n\036hidden_static_properties_count\030\002 \001"
-    "(\005\022\035\n\025static_property_count\030\003 \001(\005\022\036\n\026dyn"
-    "amic_property_count\030\004 \001(\005\022$\n\nproperties\030"
-    "\005 \003(\0132\020.qps.pb.Propertyb\006proto3", 271);
+    "\n\025quickproperties.proto\022\006qps.pb\032\031google/"
+    "protobuf/any.proto\"5\n\010Property\022\014\n\004name\030\001"
+    " \001(\t\022\014\n\004type\030\002 \001(\005\022\r\n\005value\030\003 \001(\t\"\256\001\n\nPr"
+    "operties\022\023\n\013object_name\030\001 \001(\t\022&\n\036hidden_"
+    "static_properties_count\030\002 \001(\005\022\035\n\025static_"
+    "property_count\030\003 \001(\005\022\036\n\026dynamic_property"
+    "_count\030\004 \001(\005\022$\n\nproperties\030\n \003(\0132\020.qps.p"
+    "b.Property\"q\n\rTimeStringMap\0221\n\006values\030\001 "
+    "\003(\0132!.qps.pb.TimeStringMap.ValuesEntry\032-"
+    "\n\013ValuesEntry\022\013\n\003key\030\001 \001(\003\022\r\n\005value\030\002 \001("
+    "\t:\0028\001\"q\n\rTimeDoubleMap\0221\n\006values\030\001 \003(\0132!"
+    ".qps.pb.TimeDoubleMap.ValuesEntry\032-\n\013Val"
+    "uesEntry\022\013\n\003key\030\001 \001(\003\022\r\n\005value\030\002 \001(\001:\0028\001"
+    "\"_\n\014TimeValueMap\022\025\n\rproperty_name\030\001 \001(\t\022"
+    "\025\n\rproperty_type\030\002 \001(\005\022!\n\003map\030* \001(\0132\024.go"
+    "ogle.protobuf.Any\"t\n\017TimedProperties\022 \n\004"
+    "base\030\001 \001(\0132\022.qps.pb.Properties\022\r\n\005first\030"
+    "\002 \001(\003\022\014\n\004last\030\003 \001(\003\022\"\n\004tvms\030\n \003(\0132\024.qps."
+    "pb.TimeValueMapb\006proto3", 743);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "quickproperties.proto", &protobuf_RegisterTypes);
   Property::default_instance_ = new Property();
   Properties::default_instance_ = new Properties();
+  TimeStringMap::default_instance_ = new TimeStringMap();
+  TimeDoubleMap::default_instance_ = new TimeDoubleMap();
+  TimeValueMap::default_instance_ = new TimeValueMap();
+  TimedProperties::default_instance_ = new TimedProperties();
   Property::default_instance_->InitAsDefaultInstance();
   Properties::default_instance_->InitAsDefaultInstance();
+  TimeStringMap::default_instance_->InitAsDefaultInstance();
+  TimeDoubleMap::default_instance_->InitAsDefaultInstance();
+  TimeValueMap::default_instance_->InitAsDefaultInstance();
+  TimedProperties::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_quickproperties_2eproto);
 }
 
@@ -722,13 +858,13 @@ bool Properties::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_properties;
+        if (input->ExpectTag(82)) goto parse_properties;
         break;
       }
 
-      // repeated .qps.pb.Property properties = 5;
-      case 5: {
-        if (tag == 42) {
+      // repeated .qps.pb.Property properties = 10;
+      case 10: {
+        if (tag == 82) {
          parse_properties:
           DO_(input->IncrementRecursionDepth());
          parse_loop_properties:
@@ -737,7 +873,7 @@ bool Properties::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(42)) goto parse_loop_properties;
+        if (input->ExpectTag(82)) goto parse_loop_properties;
         input->UnsafeDecrementRecursionDepth();
         if (input->ExpectAtEnd()) goto success;
         break;
@@ -792,10 +928,10 @@ void Properties::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->dynamic_property_count(), output);
   }
 
-  // repeated .qps.pb.Property properties = 5;
+  // repeated .qps.pb.Property properties = 10;
   for (unsigned int i = 0, n = this->properties_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      5, this->properties(i), output);
+      10, this->properties(i), output);
   }
 
   // @@protoc_insertion_point(serialize_end:qps.pb.Properties)
@@ -830,11 +966,11 @@ void Properties::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->dynamic_property_count(), target);
   }
 
-  // repeated .qps.pb.Property properties = 5;
+  // repeated .qps.pb.Property properties = 10;
   for (unsigned int i = 0, n = this->properties_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        5, this->properties(i), target);
+        10, this->properties(i), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:qps.pb.Properties)
@@ -872,7 +1008,7 @@ int Properties::ByteSize() const {
         this->dynamic_property_count());
   }
 
-  // repeated .qps.pb.Property properties = 5;
+  // repeated .qps.pb.Property properties = 10;
   total_size += 1 * this->properties_size();
   for (int i = 0; i < this->properties_size(); i++) {
     total_size +=
@@ -1043,7 +1179,7 @@ void Properties::clear_dynamic_property_count() {
   // @@protoc_insertion_point(field_set:qps.pb.Properties.dynamic_property_count)
 }
 
-// repeated .qps.pb.Property properties = 5;
+// repeated .qps.pb.Property properties = 10;
 int Properties::properties_size() const {
   return properties_.size();
 }
@@ -1071,6 +1207,1377 @@ const ::google::protobuf::RepeatedPtrField< ::qps::pb::Property >&
 Properties::properties() const {
   // @@protoc_insertion_point(field_list:qps.pb.Properties.properties)
   return properties_;
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int TimeStringMap::kValuesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+TimeStringMap::TimeStringMap()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:qps.pb.TimeStringMap)
+}
+
+void TimeStringMap::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+TimeStringMap::TimeStringMap(const TimeStringMap& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:qps.pb.TimeStringMap)
+}
+
+void TimeStringMap::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  values_.SetAssignDescriptorCallback(
+      protobuf_AssignDescriptorsOnce);
+  values_.SetEntryDescriptor(
+      &::qps::pb::TimeStringMap_ValuesEntry_descriptor_);
+}
+
+TimeStringMap::~TimeStringMap() {
+  // @@protoc_insertion_point(destructor:qps.pb.TimeStringMap)
+  SharedDtor();
+}
+
+void TimeStringMap::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void TimeStringMap::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* TimeStringMap::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return TimeStringMap_descriptor_;
+}
+
+const TimeStringMap& TimeStringMap::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_quickproperties_2eproto();
+  return *default_instance_;
+}
+
+TimeStringMap* TimeStringMap::default_instance_ = NULL;
+
+TimeStringMap* TimeStringMap::New(::google::protobuf::Arena* arena) const {
+  TimeStringMap* n = new TimeStringMap;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void TimeStringMap::Clear() {
+  values_.Clear();
+}
+
+bool TimeStringMap::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:qps.pb.TimeStringMap)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // map<int64, string> values = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_values:
+          ::google::protobuf::scoped_ptr<TimeStringMap_ValuesEntry> entry(values_.NewEntry());
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, entry.get()));
+          (*mutable_values())[entry->key()] = *entry->mutable_value();
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            entry->mutable_value()->data(),
+            entry->mutable_value()->length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "qps.pb.TimeStringMap.ValuesEntry.value"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(10)) goto parse_loop_values;
+        input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:qps.pb.TimeStringMap)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:qps.pb.TimeStringMap)
+  return false;
+#undef DO_
+}
+
+void TimeStringMap::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:qps.pb.TimeStringMap)
+  // map<int64, string> values = 1;
+  {
+    ::google::protobuf::scoped_ptr<TimeStringMap_ValuesEntry> entry;
+    for (::google::protobuf::Map< ::google::protobuf::int64, ::std::string >::const_iterator
+        it = this->values().begin();
+        it != this->values().end(); ++it) {
+      entry.reset(values_.NewEntryWrapper(it->first, it->second));
+      ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+          1, *entry, output);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        it->second.data(), it->second.length(),
+        ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+        "qps.pb.TimeStringMap.ValuesEntry.value");
+    }
+  }
+
+  // @@protoc_insertion_point(serialize_end:qps.pb.TimeStringMap)
+}
+
+::google::protobuf::uint8* TimeStringMap::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:qps.pb.TimeStringMap)
+  // map<int64, string> values = 1;
+  {
+    ::google::protobuf::scoped_ptr<TimeStringMap_ValuesEntry> entry;
+    for (::google::protobuf::Map< ::google::protobuf::int64, ::std::string >::const_iterator
+        it = this->values().begin();
+        it != this->values().end(); ++it) {
+      entry.reset(values_.NewEntryWrapper(it->first, it->second));
+      target = ::google::protobuf::internal::WireFormatLite::
+          WriteMessageNoVirtualToArray(
+              1, *entry, target);
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        it->second.data(), it->second.length(),
+        ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+        "qps.pb.TimeStringMap.ValuesEntry.value");
+    }
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:qps.pb.TimeStringMap)
+  return target;
+}
+
+int TimeStringMap::ByteSize() const {
+  int total_size = 0;
+
+  // map<int64, string> values = 1;
+  total_size += 1 * this->values_size();
+  {
+    ::google::protobuf::scoped_ptr<TimeStringMap_ValuesEntry> entry;
+    for (::google::protobuf::Map< ::google::protobuf::int64, ::std::string >::const_iterator
+        it = this->values().begin();
+        it != this->values().end(); ++it) {
+      entry.reset(values_.NewEntryWrapper(it->first, it->second));
+      total_size += ::google::protobuf::internal::WireFormatLite::
+          MessageSizeNoVirtual(*entry);
+    }
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void TimeStringMap::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const TimeStringMap* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const TimeStringMap>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void TimeStringMap::MergeFrom(const TimeStringMap& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  values_.MergeFrom(from.values_);
+}
+
+void TimeStringMap::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TimeStringMap::CopyFrom(const TimeStringMap& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TimeStringMap::IsInitialized() const {
+
+  return true;
+}
+
+void TimeStringMap::Swap(TimeStringMap* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void TimeStringMap::InternalSwap(TimeStringMap* other) {
+  values_.Swap(&other->values_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata TimeStringMap::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = TimeStringMap_descriptor_;
+  metadata.reflection = TimeStringMap_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// TimeStringMap
+
+// map<int64, string> values = 1;
+int TimeStringMap::values_size() const {
+  return values_.size();
+}
+void TimeStringMap::clear_values() {
+  values_.Clear();
+}
+ const ::google::protobuf::Map< ::google::protobuf::int64, ::std::string >&
+TimeStringMap::values() const {
+  // @@protoc_insertion_point(field_map:qps.pb.TimeStringMap.values)
+  return values_.GetMap();
+}
+ ::google::protobuf::Map< ::google::protobuf::int64, ::std::string >*
+TimeStringMap::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_map:qps.pb.TimeStringMap.values)
+  return values_.MutableMap();
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int TimeDoubleMap::kValuesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+TimeDoubleMap::TimeDoubleMap()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:qps.pb.TimeDoubleMap)
+}
+
+void TimeDoubleMap::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+TimeDoubleMap::TimeDoubleMap(const TimeDoubleMap& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:qps.pb.TimeDoubleMap)
+}
+
+void TimeDoubleMap::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  values_.SetAssignDescriptorCallback(
+      protobuf_AssignDescriptorsOnce);
+  values_.SetEntryDescriptor(
+      &::qps::pb::TimeDoubleMap_ValuesEntry_descriptor_);
+}
+
+TimeDoubleMap::~TimeDoubleMap() {
+  // @@protoc_insertion_point(destructor:qps.pb.TimeDoubleMap)
+  SharedDtor();
+}
+
+void TimeDoubleMap::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void TimeDoubleMap::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* TimeDoubleMap::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return TimeDoubleMap_descriptor_;
+}
+
+const TimeDoubleMap& TimeDoubleMap::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_quickproperties_2eproto();
+  return *default_instance_;
+}
+
+TimeDoubleMap* TimeDoubleMap::default_instance_ = NULL;
+
+TimeDoubleMap* TimeDoubleMap::New(::google::protobuf::Arena* arena) const {
+  TimeDoubleMap* n = new TimeDoubleMap;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void TimeDoubleMap::Clear() {
+  values_.Clear();
+}
+
+bool TimeDoubleMap::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:qps.pb.TimeDoubleMap)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // map<int64, double> values = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_values:
+          ::google::protobuf::scoped_ptr<TimeDoubleMap_ValuesEntry> entry(values_.NewEntry());
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+              input, entry.get()));
+          (*mutable_values())[entry->key()] = *entry->mutable_value();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(10)) goto parse_loop_values;
+        input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:qps.pb.TimeDoubleMap)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:qps.pb.TimeDoubleMap)
+  return false;
+#undef DO_
+}
+
+void TimeDoubleMap::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:qps.pb.TimeDoubleMap)
+  // map<int64, double> values = 1;
+  {
+    ::google::protobuf::scoped_ptr<TimeDoubleMap_ValuesEntry> entry;
+    for (::google::protobuf::Map< ::google::protobuf::int64, double >::const_iterator
+        it = this->values().begin();
+        it != this->values().end(); ++it) {
+      entry.reset(values_.NewEntryWrapper(it->first, it->second));
+      ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+          1, *entry, output);
+    }
+  }
+
+  // @@protoc_insertion_point(serialize_end:qps.pb.TimeDoubleMap)
+}
+
+::google::protobuf::uint8* TimeDoubleMap::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:qps.pb.TimeDoubleMap)
+  // map<int64, double> values = 1;
+  {
+    ::google::protobuf::scoped_ptr<TimeDoubleMap_ValuesEntry> entry;
+    for (::google::protobuf::Map< ::google::protobuf::int64, double >::const_iterator
+        it = this->values().begin();
+        it != this->values().end(); ++it) {
+      entry.reset(values_.NewEntryWrapper(it->first, it->second));
+      target = ::google::protobuf::internal::WireFormatLite::
+          WriteMessageNoVirtualToArray(
+              1, *entry, target);
+    }
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:qps.pb.TimeDoubleMap)
+  return target;
+}
+
+int TimeDoubleMap::ByteSize() const {
+  int total_size = 0;
+
+  // map<int64, double> values = 1;
+  total_size += 1 * this->values_size();
+  {
+    ::google::protobuf::scoped_ptr<TimeDoubleMap_ValuesEntry> entry;
+    for (::google::protobuf::Map< ::google::protobuf::int64, double >::const_iterator
+        it = this->values().begin();
+        it != this->values().end(); ++it) {
+      entry.reset(values_.NewEntryWrapper(it->first, it->second));
+      total_size += ::google::protobuf::internal::WireFormatLite::
+          MessageSizeNoVirtual(*entry);
+    }
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void TimeDoubleMap::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const TimeDoubleMap* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const TimeDoubleMap>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void TimeDoubleMap::MergeFrom(const TimeDoubleMap& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  values_.MergeFrom(from.values_);
+}
+
+void TimeDoubleMap::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TimeDoubleMap::CopyFrom(const TimeDoubleMap& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TimeDoubleMap::IsInitialized() const {
+
+  return true;
+}
+
+void TimeDoubleMap::Swap(TimeDoubleMap* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void TimeDoubleMap::InternalSwap(TimeDoubleMap* other) {
+  values_.Swap(&other->values_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata TimeDoubleMap::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = TimeDoubleMap_descriptor_;
+  metadata.reflection = TimeDoubleMap_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// TimeDoubleMap
+
+// map<int64, double> values = 1;
+int TimeDoubleMap::values_size() const {
+  return values_.size();
+}
+void TimeDoubleMap::clear_values() {
+  values_.Clear();
+}
+ const ::google::protobuf::Map< ::google::protobuf::int64, double >&
+TimeDoubleMap::values() const {
+  // @@protoc_insertion_point(field_map:qps.pb.TimeDoubleMap.values)
+  return values_.GetMap();
+}
+ ::google::protobuf::Map< ::google::protobuf::int64, double >*
+TimeDoubleMap::mutable_values() {
+  // @@protoc_insertion_point(field_mutable_map:qps.pb.TimeDoubleMap.values)
+  return values_.MutableMap();
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int TimeValueMap::kPropertyNameFieldNumber;
+const int TimeValueMap::kPropertyTypeFieldNumber;
+const int TimeValueMap::kMapFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+TimeValueMap::TimeValueMap()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:qps.pb.TimeValueMap)
+}
+
+void TimeValueMap::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+  map_ = const_cast< ::google::protobuf::Any*>(&::google::protobuf::Any::default_instance());
+}
+
+TimeValueMap::TimeValueMap(const TimeValueMap& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:qps.pb.TimeValueMap)
+}
+
+void TimeValueMap::SharedCtor() {
+    _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  property_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  property_type_ = 0;
+  map_ = NULL;
+}
+
+TimeValueMap::~TimeValueMap() {
+  // @@protoc_insertion_point(destructor:qps.pb.TimeValueMap)
+  SharedDtor();
+}
+
+void TimeValueMap::SharedDtor() {
+  property_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != default_instance_) {
+    delete map_;
+  }
+}
+
+void TimeValueMap::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* TimeValueMap::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return TimeValueMap_descriptor_;
+}
+
+const TimeValueMap& TimeValueMap::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_quickproperties_2eproto();
+  return *default_instance_;
+}
+
+TimeValueMap* TimeValueMap::default_instance_ = NULL;
+
+TimeValueMap* TimeValueMap::New(::google::protobuf::Arena* arena) const {
+  TimeValueMap* n = new TimeValueMap;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void TimeValueMap::Clear() {
+  property_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  property_type_ = 0;
+  if (GetArenaNoVirtual() == NULL && map_ != NULL) delete map_;
+  map_ = NULL;
+}
+
+bool TimeValueMap::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:qps.pb.TimeValueMap)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(16383);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional string property_name = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_property_name()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->property_name().data(), this->property_name().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "qps.pb.TimeValueMap.property_name"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(16)) goto parse_property_type;
+        break;
+      }
+
+      // optional int32 property_type = 2;
+      case 2: {
+        if (tag == 16) {
+         parse_property_type:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &property_type_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(338)) goto parse_map;
+        break;
+      }
+
+      // optional .google.protobuf.Any map = 42;
+      case 42: {
+        if (tag == 338) {
+         parse_map:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_map()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:qps.pb.TimeValueMap)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:qps.pb.TimeValueMap)
+  return false;
+#undef DO_
+}
+
+void TimeValueMap::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:qps.pb.TimeValueMap)
+  // optional string property_name = 1;
+  if (this->property_name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->property_name().data(), this->property_name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "qps.pb.TimeValueMap.property_name");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->property_name(), output);
+  }
+
+  // optional int32 property_type = 2;
+  if (this->property_type() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->property_type(), output);
+  }
+
+  // optional .google.protobuf.Any map = 42;
+  if (this->has_map()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      42, *this->map_, output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:qps.pb.TimeValueMap)
+}
+
+::google::protobuf::uint8* TimeValueMap::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:qps.pb.TimeValueMap)
+  // optional string property_name = 1;
+  if (this->property_name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->property_name().data(), this->property_name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "qps.pb.TimeValueMap.property_name");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->property_name(), target);
+  }
+
+  // optional int32 property_type = 2;
+  if (this->property_type() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->property_type(), target);
+  }
+
+  // optional .google.protobuf.Any map = 42;
+  if (this->has_map()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        42, *this->map_, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:qps.pb.TimeValueMap)
+  return target;
+}
+
+int TimeValueMap::ByteSize() const {
+  int total_size = 0;
+
+  // optional string property_name = 1;
+  if (this->property_name().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->property_name());
+  }
+
+  // optional int32 property_type = 2;
+  if (this->property_type() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->property_type());
+  }
+
+  // optional .google.protobuf.Any map = 42;
+  if (this->has_map()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->map_);
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void TimeValueMap::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const TimeValueMap* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const TimeValueMap>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void TimeValueMap::MergeFrom(const TimeValueMap& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (from.property_name().size() > 0) {
+
+    property_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.property_name_);
+  }
+  if (from.property_type() != 0) {
+    set_property_type(from.property_type());
+  }
+  if (from.has_map()) {
+    mutable_map()->::google::protobuf::Any::MergeFrom(from.map());
+  }
+}
+
+void TimeValueMap::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TimeValueMap::CopyFrom(const TimeValueMap& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TimeValueMap::IsInitialized() const {
+
+  return true;
+}
+
+void TimeValueMap::Swap(TimeValueMap* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void TimeValueMap::InternalSwap(TimeValueMap* other) {
+  property_name_.Swap(&other->property_name_);
+  std::swap(property_type_, other->property_type_);
+  std::swap(map_, other->map_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata TimeValueMap::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = TimeValueMap_descriptor_;
+  metadata.reflection = TimeValueMap_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// TimeValueMap
+
+// optional string property_name = 1;
+void TimeValueMap::clear_property_name() {
+  property_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& TimeValueMap::property_name() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimeValueMap.property_name)
+  return property_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void TimeValueMap::set_property_name(const ::std::string& value) {
+  
+  property_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:qps.pb.TimeValueMap.property_name)
+}
+ void TimeValueMap::set_property_name(const char* value) {
+  
+  property_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:qps.pb.TimeValueMap.property_name)
+}
+ void TimeValueMap::set_property_name(const char* value, size_t size) {
+  
+  property_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:qps.pb.TimeValueMap.property_name)
+}
+ ::std::string* TimeValueMap::mutable_property_name() {
+  
+  // @@protoc_insertion_point(field_mutable:qps.pb.TimeValueMap.property_name)
+  return property_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* TimeValueMap::release_property_name() {
+  
+  return property_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void TimeValueMap::set_allocated_property_name(::std::string* property_name) {
+  if (property_name != NULL) {
+    
+  } else {
+    
+  }
+  property_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), property_name);
+  // @@protoc_insertion_point(field_set_allocated:qps.pb.TimeValueMap.property_name)
+}
+
+// optional int32 property_type = 2;
+void TimeValueMap::clear_property_type() {
+  property_type_ = 0;
+}
+ ::google::protobuf::int32 TimeValueMap::property_type() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimeValueMap.property_type)
+  return property_type_;
+}
+ void TimeValueMap::set_property_type(::google::protobuf::int32 value) {
+  
+  property_type_ = value;
+  // @@protoc_insertion_point(field_set:qps.pb.TimeValueMap.property_type)
+}
+
+// optional .google.protobuf.Any map = 42;
+bool TimeValueMap::has_map() const {
+  return !_is_default_instance_ && map_ != NULL;
+}
+void TimeValueMap::clear_map() {
+  if (GetArenaNoVirtual() == NULL && map_ != NULL) delete map_;
+  map_ = NULL;
+}
+const ::google::protobuf::Any& TimeValueMap::map() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimeValueMap.map)
+  return map_ != NULL ? *map_ : *default_instance_->map_;
+}
+::google::protobuf::Any* TimeValueMap::mutable_map() {
+  
+  if (map_ == NULL) {
+    map_ = new ::google::protobuf::Any;
+  }
+  // @@protoc_insertion_point(field_mutable:qps.pb.TimeValueMap.map)
+  return map_;
+}
+::google::protobuf::Any* TimeValueMap::release_map() {
+  
+  ::google::protobuf::Any* temp = map_;
+  map_ = NULL;
+  return temp;
+}
+void TimeValueMap::set_allocated_map(::google::protobuf::Any* map) {
+  delete map_;
+  map_ = map;
+  if (map) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:qps.pb.TimeValueMap.map)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int TimedProperties::kBaseFieldNumber;
+const int TimedProperties::kFirstFieldNumber;
+const int TimedProperties::kLastFieldNumber;
+const int TimedProperties::kTvmsFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+TimedProperties::TimedProperties()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:qps.pb.TimedProperties)
+}
+
+void TimedProperties::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+  base_ = const_cast< ::qps::pb::Properties*>(&::qps::pb::Properties::default_instance());
+}
+
+TimedProperties::TimedProperties(const TimedProperties& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:qps.pb.TimedProperties)
+}
+
+void TimedProperties::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  base_ = NULL;
+  first_ = GOOGLE_LONGLONG(0);
+  last_ = GOOGLE_LONGLONG(0);
+}
+
+TimedProperties::~TimedProperties() {
+  // @@protoc_insertion_point(destructor:qps.pb.TimedProperties)
+  SharedDtor();
+}
+
+void TimedProperties::SharedDtor() {
+  if (this != default_instance_) {
+    delete base_;
+  }
+}
+
+void TimedProperties::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* TimedProperties::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return TimedProperties_descriptor_;
+}
+
+const TimedProperties& TimedProperties::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_quickproperties_2eproto();
+  return *default_instance_;
+}
+
+TimedProperties* TimedProperties::default_instance_ = NULL;
+
+TimedProperties* TimedProperties::New(::google::protobuf::Arena* arena) const {
+  TimedProperties* n = new TimedProperties;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void TimedProperties::Clear() {
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<TimedProperties*>(16)->f)
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(first_, last_);
+  if (GetArenaNoVirtual() == NULL && base_ != NULL) delete base_;
+  base_ = NULL;
+
+#undef ZR_HELPER_
+#undef ZR_
+
+  tvms_.Clear();
+}
+
+bool TimedProperties::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:qps.pb.TimedProperties)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional .qps.pb.Properties base = 1;
+      case 1: {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_base()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(16)) goto parse_first;
+        break;
+      }
+
+      // optional int64 first = 2;
+      case 2: {
+        if (tag == 16) {
+         parse_first:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &first_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(24)) goto parse_last;
+        break;
+      }
+
+      // optional int64 last = 3;
+      case 3: {
+        if (tag == 24) {
+         parse_last:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &last_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(82)) goto parse_tvms;
+        break;
+      }
+
+      // repeated .qps.pb.TimeValueMap tvms = 10;
+      case 10: {
+        if (tag == 82) {
+         parse_tvms:
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_tvms:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_tvms()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(82)) goto parse_loop_tvms;
+        input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:qps.pb.TimedProperties)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:qps.pb.TimedProperties)
+  return false;
+#undef DO_
+}
+
+void TimedProperties::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:qps.pb.TimedProperties)
+  // optional .qps.pb.Properties base = 1;
+  if (this->has_base()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, *this->base_, output);
+  }
+
+  // optional int64 first = 2;
+  if (this->first() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->first(), output);
+  }
+
+  // optional int64 last = 3;
+  if (this->last() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->last(), output);
+  }
+
+  // repeated .qps.pb.TimeValueMap tvms = 10;
+  for (unsigned int i = 0, n = this->tvms_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      10, this->tvms(i), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:qps.pb.TimedProperties)
+}
+
+::google::protobuf::uint8* TimedProperties::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:qps.pb.TimedProperties)
+  // optional .qps.pb.Properties base = 1;
+  if (this->has_base()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        1, *this->base_, target);
+  }
+
+  // optional int64 first = 2;
+  if (this->first() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->first(), target);
+  }
+
+  // optional int64 last = 3;
+  if (this->last() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->last(), target);
+  }
+
+  // repeated .qps.pb.TimeValueMap tvms = 10;
+  for (unsigned int i = 0, n = this->tvms_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        10, this->tvms(i), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:qps.pb.TimedProperties)
+  return target;
+}
+
+int TimedProperties::ByteSize() const {
+  int total_size = 0;
+
+  // optional .qps.pb.Properties base = 1;
+  if (this->has_base()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->base_);
+  }
+
+  // optional int64 first = 2;
+  if (this->first() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->first());
+  }
+
+  // optional int64 last = 3;
+  if (this->last() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->last());
+  }
+
+  // repeated .qps.pb.TimeValueMap tvms = 10;
+  total_size += 1 * this->tvms_size();
+  for (int i = 0; i < this->tvms_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->tvms(i));
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void TimedProperties::MergeFrom(const ::google::protobuf::Message& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  const TimedProperties* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const TimedProperties>(
+          &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void TimedProperties::MergeFrom(const TimedProperties& from) {
+  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  tvms_.MergeFrom(from.tvms_);
+  if (from.has_base()) {
+    mutable_base()->::qps::pb::Properties::MergeFrom(from.base());
+  }
+  if (from.first() != 0) {
+    set_first(from.first());
+  }
+  if (from.last() != 0) {
+    set_last(from.last());
+  }
+}
+
+void TimedProperties::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TimedProperties::CopyFrom(const TimedProperties& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TimedProperties::IsInitialized() const {
+
+  return true;
+}
+
+void TimedProperties::Swap(TimedProperties* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void TimedProperties::InternalSwap(TimedProperties* other) {
+  std::swap(base_, other->base_);
+  std::swap(first_, other->first_);
+  std::swap(last_, other->last_);
+  tvms_.UnsafeArenaSwap(&other->tvms_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata TimedProperties::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = TimedProperties_descriptor_;
+  metadata.reflection = TimedProperties_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// TimedProperties
+
+// optional .qps.pb.Properties base = 1;
+bool TimedProperties::has_base() const {
+  return !_is_default_instance_ && base_ != NULL;
+}
+void TimedProperties::clear_base() {
+  if (GetArenaNoVirtual() == NULL && base_ != NULL) delete base_;
+  base_ = NULL;
+}
+const ::qps::pb::Properties& TimedProperties::base() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimedProperties.base)
+  return base_ != NULL ? *base_ : *default_instance_->base_;
+}
+::qps::pb::Properties* TimedProperties::mutable_base() {
+  
+  if (base_ == NULL) {
+    base_ = new ::qps::pb::Properties;
+  }
+  // @@protoc_insertion_point(field_mutable:qps.pb.TimedProperties.base)
+  return base_;
+}
+::qps::pb::Properties* TimedProperties::release_base() {
+  
+  ::qps::pb::Properties* temp = base_;
+  base_ = NULL;
+  return temp;
+}
+void TimedProperties::set_allocated_base(::qps::pb::Properties* base) {
+  delete base_;
+  base_ = base;
+  if (base) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:qps.pb.TimedProperties.base)
+}
+
+// optional int64 first = 2;
+void TimedProperties::clear_first() {
+  first_ = GOOGLE_LONGLONG(0);
+}
+ ::google::protobuf::int64 TimedProperties::first() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimedProperties.first)
+  return first_;
+}
+ void TimedProperties::set_first(::google::protobuf::int64 value) {
+  
+  first_ = value;
+  // @@protoc_insertion_point(field_set:qps.pb.TimedProperties.first)
+}
+
+// optional int64 last = 3;
+void TimedProperties::clear_last() {
+  last_ = GOOGLE_LONGLONG(0);
+}
+ ::google::protobuf::int64 TimedProperties::last() const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimedProperties.last)
+  return last_;
+}
+ void TimedProperties::set_last(::google::protobuf::int64 value) {
+  
+  last_ = value;
+  // @@protoc_insertion_point(field_set:qps.pb.TimedProperties.last)
+}
+
+// repeated .qps.pb.TimeValueMap tvms = 10;
+int TimedProperties::tvms_size() const {
+  return tvms_.size();
+}
+void TimedProperties::clear_tvms() {
+  tvms_.Clear();
+}
+const ::qps::pb::TimeValueMap& TimedProperties::tvms(int index) const {
+  // @@protoc_insertion_point(field_get:qps.pb.TimedProperties.tvms)
+  return tvms_.Get(index);
+}
+::qps::pb::TimeValueMap* TimedProperties::mutable_tvms(int index) {
+  // @@protoc_insertion_point(field_mutable:qps.pb.TimedProperties.tvms)
+  return tvms_.Mutable(index);
+}
+::qps::pb::TimeValueMap* TimedProperties::add_tvms() {
+  // @@protoc_insertion_point(field_add:qps.pb.TimedProperties.tvms)
+  return tvms_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::qps::pb::TimeValueMap >*
+TimedProperties::mutable_tvms() {
+  // @@protoc_insertion_point(field_mutable_list:qps.pb.TimedProperties.tvms)
+  return &tvms_;
+}
+const ::google::protobuf::RepeatedPtrField< ::qps::pb::TimeValueMap >&
+TimedProperties::tvms() const {
+  // @@protoc_insertion_point(field_list:qps.pb.TimedProperties.tvms)
+  return tvms_;
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
