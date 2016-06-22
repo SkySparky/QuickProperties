@@ -1,20 +1,37 @@
-# QuickProperties
+[Overview](#QuickProperties) |
+[Dependencies](#Dependencies) |
+[Screenshots](#Screenshots) |
+[License](#license)
 
-QuickProperties is a C++/QML library designed to ease edition and management of QObject static and dynamic properties. While being developed with properties edition in mind, QuickProperties also contains simple UI components such as modal/modeless dialogs and a hideable panel that could be reused for fast QML applications prototyping.
+QuickProperties
+============================
 
-![alt tag](http://www.qanava.org/doc/qps/qps-overview.png)
+`QuickProperties` is a C++11/Qt/QML library designed to support edition and management of QObject with static and dynamic properties. QuickProperties can also expose container of QObject to Qt AbstractItemModel that are easy to reuse as a model in complex QML view (mainly ListView with custom delegates).
 
-QuickProperties focus on providing a consistent data model based on and around QObject which is the simplest way of exposing data in advanced QML UIs. QuickProperties (QPS) main concepts are:
-- **Properties:** properties are a set of standard Qt static and dynamic in a QObject.
-- **Timed properties:** extend previous concept with date/time support; all property elements values could be changed and retrieved over time allowing the user to display a timegraph of values for specific properties.
-- **DataSource:** either a synchronous or asynchronous source of data for timed properties (actually, an XML or CSV file, or a more advanced wrapper such as in to the Y!F  HTTP stock sample).
-- **Qt Item Model interface:** QPS expose QObject properties in a standard Qt Item Model interface, allowing visualization and edition of properties directly in existing QML components.
+![QuickProperties overview](https://github.com/cneben/QuickProperties/blob/master/doc/qps-overview.png)
 
-More informations available on project homepage: http://www.qanava.org/
+`QuickProperties` provide a consistent data model based on QObject to expose complex objects with properties of multiple types in QML UIs. QuickProperties (QPS) main concepts are:
+- **Properties:** properties are a set of standard Qt static and dynamic properties in a QObject.
 
-QuickProperties Reference documentation: http://www.qanava.org/doc/qps/index.html
+- **Timed properties:** extend previous concept with date/time support; all property values could be modified and retrieved over time allowing the user to display a timegraph of values for specific properties. Timed properties can eventually be visualized with [QuickTimeGraph](https://github.com/cneben/QuickTimeGraph) or Qt Chart.
 
-QuickProperties screenshot:
+- **DataSource:** either a synchronous or asynchronous source of data for timed properties (actually, an XML or CSV file, or a more advanced wrapper such as in to the Y!F  HTTP stock sample). QuickProperties can "bind" an asynchronous data source fetching data from the Web on a class exposing a Q_PROPERTY( real p ): http://www.destrat.io/quickproperties/doc/FIXME
+
+- **Qt Item Model interface:** QPS expose QObject properties in a standard Qt Item Model interface, allowing visualization and edition of properties directly in existing QML components. Either standard container (such as std::vector or std::set) or Qt containers (QVector, QList) are supported. qps::ContainerListModel also has dedicated code to manage standard container of smart pointer containing QObject pointer, for example you can expose an std::vector<std::shared_ptr<QObject>> directly as a QAbstractListModel useable in a QML ListView *model* property: http://www.destrat.io/quickproperties/doc/FIXME
+
+More informations available on project homepage: http://www.destrat.io/quickproperties
+
+QuickProperties is primarily developed with Qt >= 5.6 with MSVC2015 and g++5.3
+
+QuickProperties Reference documentation: http://www.destrat.io/quickproperties/doc/index.html
+
+QuickProperties is still _early alpha_, contact benoit@destrat.io if you need specific features or non GPL licencing.
+
+## Dependencies:
+
+- **Google Test**: Google Test GitHub: https://github.com/google/googletest/
+
+## Screenshots:
 
 ![alt tag](http://www.qanava.org/doc/qps/timegraph.png)
 
@@ -22,6 +39,10 @@ QuickProperties screenshot:
 
 ![alt tag](http://www.qanava.org/wp-content/uploads/2015/10/20151029_quiproperties-sample-propslist.png)
 
+License
+=======
 QuickProperties is distributed under the GNU Lesser General Public Licence v3 LGPLv3.
 
-QuickProperties is still _early alpha_, contact benoit@qanava.org if you need specific features or non GPL licencing.
+[LGPLv3](https://github.com/cneben/QuickProperties/blob/master/lgpl.txt)
+
+Copyright (c) 2016 Delia Stratégie
