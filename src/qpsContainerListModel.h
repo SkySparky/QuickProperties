@@ -306,7 +306,7 @@ private:
     inline auto appendImpl( T item, non_ptr_qobject_type )    -> void { }
 
     inline auto appendImpl( T item, ptr_type )                -> void { }
-    inline auto appendImpl( T item, ptr_qobject_type )        -> void { }
+    inline auto appendImpl( T item, ptr_qobject_type )        -> void { Q_UNUSED( item ); }
 
     inline auto appendImpl( T item, shared_ptr_type )         -> void { }
     inline auto appendImpl( T item, shared_ptr_qobject_type ) -> void {
