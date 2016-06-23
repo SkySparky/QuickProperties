@@ -1,0 +1,34 @@
+site_name: 'QuickProperties C++11/Qt/QML library'
+site_url: 'http://www.destrat.io/quickproperties'
+site_author: 'cneben'
+pages:
+  - 'Home': 'index.md'
+  - 'Properties API': 'properties.md'
+  - 'Container API': 'containers.md'
+  - 'API Reference': 'reference.md'
+  - 'Licence': 'licence.md'
+
+theme: 'material'
+
+repo_name: 'GitHub'
+repo_url: 'https://github.com/cneben/QuickProperties'
+
+copyright: 'Copyright (c) 2016 Delia Stratégie'
+
+#extra_css: ['extra.css']
+ 
+extra:
+  version: '0.5'
+  logo: 'images/logo.png'
+  palette:
+    primary: 'cyan'
+    accent: 'orange'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  author:
+    github: 'cneben'
+
+markdown_extensions:
+  - codehilite(css_class=code)
+  - admonition

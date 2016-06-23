@@ -94,29 +94,29 @@ Item {
                     Column {
                         anchors.fill: parent
                         Text {
-                            text: "label=" + item.label
+                            text: "label=" + itemData.label
                         }
                         Text {
-                            text: "radius=" + item.radius + "  borderWidth=" + item.borderWidth
+                            text: "radius=" + itemData.radius + "  borderWidth=" + itemData.borderWidth
                         }
                         Rectangle {
                             width: textColor.implicitWidth
                             height: textColor.implicitHeight
-                            color: item.color
+                            color: itemData.color
                             Text {
                                 id: textColor
-                                text: "color=" + item.color
-                                color: item.borderColor
+                                text: "color=" + itemData.color
+                                color: itemData.borderColor
                             }
                         }
                         Rectangle {
                             width: borderColor.implicitWidth
                             height: borderColor.implicitHeight
-                            color: item.borderColor
+                            color: itemData.borderColor
                             Text {
                                 id: borderColor
-                                text: "borderColor=" + item.borderColor
-                                color: item.color
+                                text: "borderColor=" + itemData.borderColor
+                                color: itemData.color
                             }
                         }
                     }
@@ -124,11 +124,11 @@ Item {
                         anchors.fill: parent
                         onClicked: {
                             customDelegate.ListView.view.currentIndex = index
-                            customListView.propertiesClicked( item )
+                            customListView.propertiesClicked( itemData )
                         }
                         onDoubleClicked: {
                             customDelegate.ListView.view.currentIndex = index
-                            customListView.propertiesDoubleClicked( item )
+                            customListView.propertiesDoubleClicked( itemData )
                         }
                     }
                 }
@@ -152,14 +152,6 @@ Item {
             anchors.margins: 4
             properties: ( propertiesListViewDialog.current != undefined ? propertiesListViewDialog.current : empty )
         }
-        //QpsHideablePanel {
-        //    title: "Create property"
-        //    Layout.fillWidth: true
-            /*Qps.PropertyCreator {
-                properties: propertiesEditor.properties
-                onPropertyCreated: { console.debug( "Property added..." ) }
-            }*/
-        //}
     }
 
     Rectangle {

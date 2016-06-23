@@ -82,18 +82,18 @@ ListView {
             Text {
                 anchors.verticalCenter: parent.verticalCenter;
                 width: 100
-                text: item.label
+                text: itemData.label
                 color: propertiesListView.textColor
             }
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
                     wrapper.ListView.view.currentIndex = index
-                    propertiesListView.propertiesClicked( item )
+                    propertiesListView.propertiesClicked( itemData )
                 }
                 onDoubleClicked: {
                     wrapper.ListView.view.currentIndex = index
-                    propertiesListView.propertiesDoubleClicked( item )
+                    propertiesListView.propertiesDoubleClicked( itemData )
                 }
             }
         }
