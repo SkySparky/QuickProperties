@@ -17,7 +17,7 @@ QuickProperties
 
 - **DataSource:** either a synchronous or asynchronous source of data for timed properties (actually, an XML or CSV file, or a more advanced wrapper such as in to the Y!F  HTTP stock sample). QuickProperties can "bind" an asynchronous data source fetching data from the Web on a class exposing a Q_PROPERTY( real p ): http://www.destrat.io/quickproperties/doc/FIXME
 
-- **Qt Item Model interface:** QPS expose QObject properties in a standard Qt Item Model interface, allowing visualization and edition of properties directly in existing QML components. Either standard container (such as std::vector or std::set) or Qt containers (QVector, QList) are supported. qps::ContainerListModel also has dedicated code to manage standard container of smart pointer containing QObject pointer, for example you can expose an std::vector<std::shared_ptr<QObject>> directly as a QAbstractListModel useable in a QML ListView *model* property: http://www.destrat.io/quickproperties/doc/FIXME
+- **Qt Item Model interface:** QuickProperties can expose containers (either QVector or QList) of QObject in a standard Qt Item Model interface, allowing visualization and edition of properties directly in existing QML components. qps::ContainerListModel also has dedicated code to manage standard container of smart pointer containing QObject pointer, for example you can expose a type such as QVector<std::shared_ptr<QObject>> directly as a QAbstractListModel useable in a QML ListView *model* property: http://www.destrat.io/quickproperties/doc/FIXME
 
 More informations available on project homepage: http://www.destrat.io/quickproperties
 
@@ -35,9 +35,9 @@ QuickProperties is still _early alpha_, contact benoit@destrat.io if you need sp
 
 ![alt tag](http://www.qanava.org/doc/qps/timegraph.png)
 
-![alt tag](http://www.qanava.org/wp-content/uploads/2015/10/20151020_sample-propsedit-1024x492.png)
+![Properties editions](https://github.com/cneben/QuickProperties/blob/master/doc/web/docs/images/propsedit.png)
 
-![alt tag](http://www.qanava.org/wp-content/uploads/2015/10/20151029_quiproperties-sample-propslist.png)
+![Properties list](https://github.com/cneben/QuickProperties/blob/master/doc/web/docs/images/propslist.png)
 
 License
 =======

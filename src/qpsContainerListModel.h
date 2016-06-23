@@ -160,7 +160,7 @@ private slots:
  * might have trouble making a distinction between a QVariant encoding a QObject* while it should be a concrete
  * QObject* subclass.
  */
-template < template<typename> class Container, class T >
+template < template<typename...CArgs> class Container, class T >
 class ContainerListModel : public DisplayRoleWatcher
 {
     /*! \name ContainerListModel Object Management *///------------------------
@@ -175,7 +175,7 @@ public:
     //! Defined for QList<> foreach iteration, do not use.
     ContainerListModel( const ContainerListModel<Container, T>& container ) :
         DisplayRoleWatcher( container ),
-        _list( container._list ) { }
+        _container( container._container ) { }
     //@}
     //-------------------------------------------------------------------------
 
@@ -234,17 +234,17 @@ public:
     using   iterator        = typename Container< T >::iterator;
 
 public:
-    auto    begin( ) const -> const_iterator { return _list.begin( ); }
-    auto    end( ) const -> const_iterator { return _list.end( ); }
+    auto    begin( ) const -> const_iterator { return _container.begin( ); }
+    auto    end( ) const -> const_iterator { return _container.end( ); }
 
-    auto    begin( ) -> iterator { return _list.begin( ); }
-    auto    end( ) -> iterator { return _list.end( ); }
+    auto    begin( ) -> iterator { return _container.begin( ); }
+    auto    end( ) -> iterator { return _container.end( ); }
 
-    auto    cbegin( ) const -> const_iterator { return _list.cbegin( ); }
-    auto    cend( ) const -> const_iterator { return _list.cend( ); }
+    auto    cbegin( ) const -> const_iterator { return _container.cbegin( ); }
+    auto    cend( ) const -> const_iterator { return _container.cend( ); }
 
     //! Define a cast operator to qps::Node::List, to iterate over qps::NodeList with the foreach keyword.
-    operator Container< T >&() { return _list; }
+    operator Container< T >&() { return _container; }
 
 public:
     auto    push_back( const T& value ) -> void { append( value ); }
@@ -266,35 +266,35 @@ public:
     }
 private:
     inline auto atImpl( int i, non_ptr_type )            const -> T {
-        return _list.at( i );
+        return _container.at( i );
     }
     inline auto atImpl( int i, non_ptr_qobject_type )    const -> T { return atImpl( i, non_ptr_type{} ); }
 
     inline auto atImpl( int i, ptr_type )                const -> T {
-        return ( i < _list.size() ? _list.at( i ) : nullptr );
+        return ( i < _container.size() ? _container.at( i ) : nullptr );
     }
     inline auto atImpl( int i, ptr_qobject_type )        const -> T { return atImpl( i, ptr_type{} ); }
 
     inline auto atImpl( int i, shared_ptr_type )         const -> T {
-        return ( i < _list.size() ? _list.at( i ) : T{} );
+        return ( i < _container.size() ? _container.at( i ) : T{} );
     }
     inline auto atImpl( int i, shared_ptr_qobject_type ) const -> T { return atImpl( i, shared_ptr_type{} ); }
 
     inline auto atImpl( int i, weak_ptr_type )           const -> T {
-        return ( i < _list.size() ? _list.at( i ) : T{} );
+        return ( i < _container.size() ? _container.at( i ) : T{} );
     }
     inline auto atImpl( int i, weak_ptr_qobject_type )   const -> T { return atImpl( i, weak_ptr_type{} ); }
 
 public:
     //! Shortcut to Container<T>::size().
-    inline int  size( ) const { return _list.size( ); }
+    inline int  size( ) const { return _container.size( ); }
 
     //! Shortcut to Container<T>::append().
     void        append( T item ) {
         if ( isNullPtr( item, item_type<T>() ) )
             return;
-        beginInsertRows( QModelIndex( ), _list.size( ), _list.size( ) );
-        _list.append( item );
+        beginInsertRows( QModelIndex( ), _container.size( ), _container.size( ) );
+        _container.append( item );
         appendImpl( item, item_type<T>{} );
         endInsertRows( );
         emitItemCountChanged();
@@ -324,12 +324,12 @@ public:
     void        insert( int i, T item ) {
 #ifdef QPS_CONTAINER_DEBUG
         qDebug() << "insert() i=" << i;
-        qDebug() << "\t_list.size()=" << _list.size();
+        qDebug() << "\t_container.size()=" << _container.size();
 #endif
         if ( i < 0 || isNullPtr( item, item_type<T>() ) )
             return;
         beginInsertRows( QModelIndex( ), i, i );
-        _list.insert( i, item );
+        _container.insert( i, item );
         appendImpl( item, item_type<T>{} ); // Warning: 20160504 appendImplt is generic enought to support indexed insertion
         endInsertRows( );
         emitItemCountChanged();
@@ -341,17 +341,17 @@ public:
         if ( isNullPtr( item, item_type<T>() ) )
             return;
 #ifdef QPS_CONTAINER_DEBUG
-        qDebug() << "remove(): _list.size()=" << _list.size() << "  _qObjectItemMap.size()=" << _qObjectItemMap.size();
+        qDebug() << "remove(): _container.size()=" << _container.size() << "  _qObjectItemMap.size()=" << _qObjectItemMap.size();
 #endif
-        int itemIndex = _list.indexOf( item );
+        int itemIndex = _container.indexOf( item );
         if ( itemIndex < 0 )
             return;
         beginRemoveRows( QModelIndex(), itemIndex, itemIndex );
         removeImpl( item, item_type<T>{} );
-        _list.removeAll( item );
+        _container.removeAll( item );
         endRemoveRows( );
 #ifdef QPS_CONTAINER_DEBUG
-        qDebug() << "end remove(): _list.size()=" << _list.size() << "  _qObjectItemMap.size()=" << _qObjectItemMap.size();
+        qDebug() << "end remove(): _container.size()=" << _container.size() << "  _qObjectItemMap.size()=" << _qObjectItemMap.size();
 #endif
         emitItemCountChanged();
         itemRemoved( item );
@@ -370,7 +370,7 @@ private:
     inline auto removeImpl( T item, weak_ptr_qobject_type )   -> void {
         if ( item.lock() )
             _qObjectItemMap.remove( item.lock().get() );
-        _list.removeAll( item );
+        _container.removeAll( item );
     }
 
 public:
@@ -387,7 +387,7 @@ public:
     virtual void clear() {
         beginResetModel();
         clearImpl( item_type<T>{} );
-        _list.clear( );
+        _container.clear( );
         endResetModel();
         emitItemCountChanged();
     }
@@ -417,7 +417,7 @@ public:
     void    clear( bool deleteContent ) {
         beginResetModel();
         clearImpl( deleteContent, item_type<T>{} );
-        _list.clear();
+        _container.clear();
         endResetModel();
         emitItemCountChanged();
     }
@@ -427,7 +427,7 @@ private:
 
     inline auto clearImpl( bool deleteContent, ptr_type )                -> void {
         if ( deleteContent ) {
-            for ( const auto& p: _list )
+            for ( const auto& p: _container )
                 delete p;
         }
     }
@@ -446,17 +446,19 @@ public:
      *
      * \note argument item could be nullptr, no exception will be thrown, it will just check if the container store nullptrs...
      */
-    auto    contains( T item ) const -> bool { return _list.contains( item ); }
+    auto    contains( T item ) const -> bool { return _container.contains( item ); }
 
 public:
     //! Shortcut to Container<T>::move().
-    inline void move( int from, int to ) { _list.move( from, to ); }
+    inline void move( int from, int to ) { _container.move( from, to ); }
 
     /*! \brief Shortcut to Container<T>::indexOf(), return index of a given \c item element in this model container.
      *
      * \note argument item could be nullptr, no exception will be thrown...
      */
-    auto    indexOf( T item ) const -> int { return _list.indexOf( item ); }
+    auto    indexOf( T item ) const -> int {
+        return _container.indexOf( item );
+    }
 
 protected:
     // FIXME: keep that ? See if there is a need for properties list...
@@ -464,10 +466,12 @@ protected:
     virtual void    itemRemoved( T ) { }
 
 protected:
-    Container< T >&             getList( ) { return _list; }
-    const Container< T >&       getList( ) const { return _list; }
+    Container< T >&             getList( ) { return _container; }
+    const Container< T >&       getList( ) const { return _container; }
+
+    //auto                        getContainer( ) -> decltype( _container ) { return _container; }
 private:
-    Container< T >     _list;
+    Container< T >     _container;
     //@}
     //-------------------------------------------------------------------------
 
@@ -481,9 +485,9 @@ public:
 public:
     virtual int         rowCount( const QModelIndex& parent = QModelIndex( ) ) const override {
 #ifdef QPS_CONTAINER_DEBUG
-        qDebug() << "rowCount(): parent=" << parent << "  _list.size()=" << _list.size();
+        qDebug() << "rowCount(): parent=" << parent << "  _container.size()=" << _container.size();
 #endif
-        return ( parent.isValid() ? 0 : _list.size( ) );
+        return ( parent.isValid() ? 0 : _container.size( ) );
     }
 
 public:
@@ -491,7 +495,7 @@ public:
 #ifdef QPS_CONTAINER_DEBUG
         qDebug() << "data() index=" << index << "  role=" << role;
 #endif
-        if ( index.row( ) >= 0 && index.row( ) < _list.size( ) ) {
+        if ( index.row( ) >= 0 && index.row( ) < _container.size( ) ) {
             if ( role == Qt::DisplayRole || role == LabelRole ) {
                 //qDebug() << "Data: querying DisplayRole for index.row=" << index.row();
                 return dataDisplayRole( index.row(), item_type<T>{} );

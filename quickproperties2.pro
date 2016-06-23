@@ -9,10 +9,16 @@ sample-propsedit.depends  = quickproperties2
 sample-propslist.subdir   = samples/propslist
 sample-propslist.depends  = quickproperties2
 
+sample-propslist.subdir   = samples/propslist
+sample-propslist.depends  = quickproperties2
+
+sample-container.subdir   = samples/container
+sample-container.depends  = quickproperties2
+
 qps2-tests.subdir   = tests
 qps2-tests.depends  = quickproperties2
 
-SUBDIRS     +=  quickproperties2 sample-propsedit sample-propslist qps2-tests samples/basic
+SUBDIRS     +=  quickproperties2 sample-propsedit sample-propslist sample-container qps2-tests 
 
 
 

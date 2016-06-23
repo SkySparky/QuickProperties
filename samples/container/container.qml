@@ -18,8 +18,6 @@
 */
 
 import QtQuick 2.0
-import QtQuick.Dialogs 1.2
-import QtQuick.Extras 1.4
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QuickProperties 2.0 as Qps
@@ -29,147 +27,47 @@ Item {
     id: mainVindow
     anchors.fill: parent
 
-    // Define a default empty properties
-    Qps.Properties {
-        id: empty
-
-        property string label: "default empty content string"
-        Qps.StringLimit { target: "content"; maxChars: 40 }
-
-        property real   width: 200
-        Qps.RealLimit { target: "width"; min: 50; max: 300; stepSize: 1. }
-        property real   height: 150
-        Qps.RealLimit { target: "height"; min: 40; max: 250 }
-
-        property real   radius: 5
-        property color  color: "blue"
-        property int    borderWidth: 3
-        Qps.IntLimit { target: "borderWidth"; min: 1; max: 6 }
-        property color  borderColor: "violet"
-    }
-
-    // Current Rectangle Properties List Visualisation ------------------------
     Rectangle {
-        id: propertiesListViewDialog
-        x: 25;      y: 15
+        id: qvectorListView
+        anchors.top: parent.top; anchors.left: parent.left
+        anchors.leftMargin: 25; anchors.topMargin: 15
         width: 250; height: 300
         color: "lightblue"; border.width: 2; border.color: "black"
-        /* title: "Rectangle properties list" */
 
-        property alias current : propertiesListView.current
-        Qps.PropertiesListView {
-            id: propertiesListView
-            anchors.fill: parent; anchors.margins: 4
-            model: rectangleStyles
-            onPropertiesClicked: { console.debug( "onPropertiesClicked():" + properties.label ) }
-            onPropertiesDoubleClicked: { console.debug( "onPropertiesDoubleClicked():" + properties.label ) }
-        }
-    }
-
-    // Current Rectangle Properties List Visualisation ------------------------
-    Rectangle {
-        id: customListViewDialog
-        y: 15
-        anchors.left: propertiesListViewDialog.right; anchors.leftMargin: 30
-        width: 250; height: 300
-        color: "lightblue"; border.width: 2; border.color: "black"
-        /* title: "Custom properties list" */
-
-        Qps.PropertiesListView {
-            id: customListView
-            anchors.fill: parent; anchors.margins: 4
-            model: rectangleStyles
-            onPropertiesClicked: {
-                console.debug( "Custom onPropertiesClicked():" + properties.label )
-            }
-            onPropertiesDoubleClicked: {
-                console.debug( "Custom onPropertiesDoubleClicked():" + properties.label )
-                propertiesEditorDialog.properties = properties
-            }
-            delegate: Component {
-                Item {
-                    id: customDelegate
-                    width: customDelegate.ListView.view.width - 2
-                    height: 65
-                    Column {
-                        anchors.fill: parent
-                        Text {
-                            text: "label=" + itemData.label
-                        }
-                        Text {
-                            text: "radius=" + itemData.radius + "  borderWidth=" + itemData.borderWidth
-                        }
-                        Rectangle {
-                            width: textColor.implicitWidth
-                            height: textColor.implicitHeight
-                            color: itemData.color
-                            Text {
-                                id: textColor
-                                text: "color=" + itemData.color
-                                color: itemData.borderColor
-                            }
-                        }
-                        Rectangle {
-                            width: borderColor.implicitWidth
-                            height: borderColor.implicitHeight
-                            color: itemData.borderColor
-                            Text {
-                                id: borderColor
-                                text: "borderColor=" + itemData.borderColor
-                                color: itemData.color
-                            }
-                        }
-                    }
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            customDelegate.ListView.view.currentIndex = index
-                            customListView.propertiesClicked( itemData )
-                        }
-                        onDoubleClicked: {
-                            customDelegate.ListView.view.currentIndex = index
-                            customListView.propertiesDoubleClicked( itemData )
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // Current RectangleProperty Visualisation --------------------------------
-    Rectangle {
-        id: propertiesEditorDialog
-        y: 15
-        anchors.left: customListViewDialog.right;   anchors.leftMargin: 30
-        width: 350; height: 300
-        color: "lightblue"; border.width: 2; border.color: "black"
-        /* title: "Edit current Rectangle properties" */
-
-        property alias properties : propertiesEditor.properties
-        Qps.PropertiesEditor {
-            id: propertiesEditor
+        ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 4
-            properties: ( propertiesListViewDialog.current != undefined ? propertiesListViewDialog.current : empty )
+            spacing: 15
+            Text {  Layout.maximumWidth: parent.width; font.bold: true; wrapMode: Text.WrapAnywhere
+                    text:"qps::ContainerListModel<QVector,Dummy*>" }
+            Text { text:"Item count=" + qvectorContainer.itemCount }
+            ListView {
+                Layout.fillHeight: true
+                model: qvectorContainer
+                delegate: Text { text:"test" }
+            }
         }
     }
 
-    Rectangle {
-        anchors.left: propertiesEditorDialog.right
-        anchors.leftMargin: 30
-        y: 50
-        width: 200
-        height: 150
-        color: propertiesEditorDialog.properties.color
-        radius: propertiesEditorDialog.properties.radius
-        border.width: propertiesEditorDialog.properties.borderWidth
-        border.color: propertiesEditorDialog.properties.borderColor
-        Text {
-            anchors.fill: parent; anchors.margins: 25
-            text: propertiesEditorDialog.properties.label;  color: "white"; font.bold: true; font.pointSize: 12
-            wrapMode: Text.Wrap
-            horizontalAlignment: Text.AlignHCenter
+    /*Rectangle {
+        id: stdvectorListView
+        anchors.left : qvectorListView.right;
+        anchors.leftMargin: 40
+        anchors.top: qvectorListView.top
+        width: 250; height: 300
+        color: "lightgreen"; border.width: 2; border.color: "black"
+
+        ColumnLayout {
+            anchors.fill: parent
+            spacing: 15
+            Text {  Layout.maximumWidth: parent.width; font.bold: true; wrapMode: Text.WrapAnywhere
+                    text:"qps::ContainerListModel<std::vector,Dummy*>" }
+            Text { text:"Item count=" + stdvectorContainer.itemCount }
+            ListView {
+                Layout.fillHeight: true
+                model: qvectorContainer
+                delegate: Text { text:"test" }
+            }
         }
-    }
+    }*/
 }
 
